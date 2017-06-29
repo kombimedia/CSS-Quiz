@@ -44,6 +44,11 @@ button{
 button:hover{
   opacity: .8;
 }
+#resit{
+  float: left;
+  margin-left: 0;
+  display: none;
+}
 .bold{
   font-weight: bold;
 }

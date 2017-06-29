@@ -2,6 +2,8 @@
 document.getElementById('start-quiz').addEventListener("click", signupValidate);
 document.getElementById('calculate-score').addEventListener("click", quizValidate);
 document.getElementById('retry').addEventListener("click", resetQuiz);
+var reStartQuiz = document.getElementById('resit');
+reStartQuiz.addEventListener("click", resitQuiz);
 
 // Global variables
 var name, email, answers, radioButton;
@@ -81,6 +83,7 @@ function quizValidate() {
 
     // Once all questions are answered hide the quiz form and print the congratulations message
     quizForm.style.display = 'none';
+    reStartQuiz.style.display = 'block';
     errorMessage.style.color = '#1abc9c';
     errorMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + totalScore + " out of " + questionAmount + "!</h3>");
 }
@@ -95,6 +98,14 @@ function resetQuiz(){
         errorMessage.innerHTML = "";
     }
   }
+}
+
+function resitQuiz(){
+  reStartQuiz.style.display = 'none';
+  quizForm.style.display = 'block';
+  errorMessage.style.color = 'red';
+  errorMessage.innerHTML = "";
+  resetQuiz();
 }
 
 
