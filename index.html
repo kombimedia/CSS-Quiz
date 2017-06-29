@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSS Quiz</title>
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Let's Test Your CSS Knowledge</h1>
+      <!-- Signup form -->
+      <div class="content-box" id="sign-up">
+        <label class="bold" for="name-field">Please provide your full name:</label>
+        <input type="text" id="name-field" placeholder="George Smith">
+        <label class="bold" for="email-field">Please provide your email address:</label>
+        <input type="text" id="email-field" placeholder="email@domain.co.nz">
+        <!-- Validation button for signup form -->
+        <button id="start-quiz">Let's Go!</button>
+      </div>
+
+      <form id="quiz-form">
+      <!-- question #1 -->
+        <div class="content-box">
+          <fieldset>
+            <legend class="bold">1. What does CSS stand for?</legend>
+            <hr>
+            <input id="q1-ans1" type="radio" name="question-1" value="0">
+            <label for="q1-ans1">Cascading CSS</label>
+            <input id="q1-ans2"  type="radio" name="question-1" value="1">
+            <label for="q1-ans2">Cascading style sheets</label>
+            <input id="q1-ans3" type="radio" name="question-1" value="0">
+            <label for="q1-ans3">Cascading separate style</label>
+          </fieldset>
+        </div>
+
+        <!-- question #2 -->
+        <div class="content-box">
+          <fieldset>
+            <legend class="bold">2. Which attribute can set text to bold?</legend>
+            <hr>
+            <input id="q2-ans1" type="radio" name="question-2" value="0">
+            <label for="q2-ans1">Text-decoration</label>
+            <input id="q2-ans2" type="radio" name="question-2" value="0">
+            <label for="q2-ans2">Font style</label>
+            <input id="q2-ans3" type="radio" name="question-2" value="1">
+            <label for="q2-ans3">Font weight</label>
+          </fieldset>
+        </div>
+
+        <!-- question #3 -->
+        <div class="content-box">
+          <fieldset>
+            <legend class="bold">3. Which tag is used to link an external CSS file?</legend>
+            <hr>
+            <input id="q3-ans1" type="radio" name="question-3" value="0">
+            <label for="q3-ans1">Script</label>
+            <input id="q3-ans2" type="radio" name="question-3" value="1">
+            <label for="q3-ans2">Link</label>
+            <input id="q3-ans3" type="radio" name="question-3" value="0">
+            <label for="q3-ans3">Rel</label>
+          </fieldset>
+        </div>
+
+        <!-- question #4 -->
+        <div class="content-box">
+          <fieldset>
+            <legend class="bold">4. Which attribute sets the underline property?</legend>
+            <hr>
+            <input id="q4-ans1" type="radio" name="question-4" value="0">
+            <label for="q4-ans1">Font style</label>
+            <input id="q4-ans2" type="radio" name="question-4" value="1">
+            <label for="q4-ans2">Text-decoration</label>
+            <input id="q4-ans3" type="radio" name="question-4" value="0">
+            <label for="q4-ans3">Font weight</label>
+          </fieldset>
+        </div>
+
+        <!-- question #5 -->
+        <div class="content-box">
+          <fieldset>
+            <legend class="bold">5. Which measurement is NOT relative?</legend>
+            <hr>
+            <input id="q5-ans1" type="radio" name="question-5" value="0">
+            <label for="q5-ans1">Px</label>
+            <input id="q5-ans2" type="radio" name="question-5" value="1">
+            <label for="q5-ans2">Cm</label>
+            <input id="q5-ans3" type="radio" name="question-5" value="0">
+            <label for="q5-ans3">%</label>
+            <input id="q5-ans4" type="radio" name="question-5" value="0">
+            <label for="q5-ans4">Em</label>
+          </fieldset>
+        </div>
+
+        <!-- question #6 -->
+        <div class="content-box">
+          <fieldset>
+            <legend class="bold">6. Which measurement unit IS relative?</legend>
+            <hr>
+            <input id="q6-ans1" type="radio" name="question-6" value="1">
+            <label for="q6-ans1">Em</label>
+            <input id="q6-ans2" type="radio" name="question-6" value="0">
+            <label for="q6-ans2">Cm</label>
+            <input id="q6-ans3" type="radio" name="question-6" value="0">
+            <label for="q6-ans3">MM</label>
+            <input id="q6-ans4" type="radio" name="question-6" value="0">
+            <label for="q6-ans4">Inch</label>
+          </fieldset>
+        </div>
+
+        <!-- question #7 -->
+        <div class="content-box">
+          <fieldset>
+            <legend class="bold">7. What attribute is used to move an elements content away from its border?</legend>
+            <hr>
+            <input id="q7-ans1" type="radio" name="question-7" value="0">
+            <label for="q7-ans1">Margin</label>
+            <input id="q7-ans2" type="radio" name="question-7" value="1">
+            <label for="q7-ans2">Padding</label>
+            <input id="q7-ans3" type="radio" name="question-7" value="0">
+            <label for="q7-ans3">Border</label>
+            <input id="q7-ans4" type="radio" name="question-7" value="0">
+            <label for="q7-ans4">Width</label>
+          </fieldset>
+        </div>
+
+        <!-- question #8 -->
+        <div class="content-box">
+          <fieldset>
+            <legend class="bold">8. Which attribute does not contribute to a block elements total width?</legend>
+            <hr>
+            <input id="q8-ans1" type="radio" name="question-8" value="0">
+            <label for="q8-ans1">Width</label>
+            <input id="q8-ans2" type="radio" name="question-8" value="0">
+            <label for="q8-ans2">Border</label>
+            <input id="q8-ans3" type="radio" name="question-8" value="1">
+            <label for="q8-ans3">Background-image</label>
+            <input id="q8-ans4" type="radio" name="question-8" value="0">
+            <label for="q8-ans4">Padding</label>
+          </fieldset>
+        </div>
+
+        <!-- question #9 -->
+        <div class="content-box">
+          <fieldset>
+            <legend class="bold">9. What property changes a positioned elements display order?</legend>
+            <hr>
+            <input id="q9-ans1" type="radio" name="question-9" value="0">
+            <label for="q9-ans1">Width</label>
+            <input id="q9-ans2" type="radio" name="question-9" value="0">
+            <label for="q9-ans2">Background</label>
+            <input id="q9-ans3" type="radio" name="question-9" value="1">
+            <label for="q9-ans3">Z-index</label>
+            <input id="q9-ans4" type="radio" name="question-9" value="0">
+            <label for="q9-ans4">Azimuth</label>
+          </fieldset>
+        </div>
+
+        <!-- question #10 -->
+        <div class="content-box">
+          <fieldset>
+            <legend class="bold">10. Which value of background-repeat will cause a background to repeat vertically?</legend>
+            <hr>
+            <input id="q10-ans1" type="radio" name="question-10" value="0">
+            <label for="q10-ans1">Repeat-x</label>
+            <input id="q10-ans2" type="radio" name="question-10" value="0">
+            <label for="q10-ans2">Repeat</label>
+            <input id="q10-ans3" type="radio" name="question-10" value="1">
+            <label for="q10-ans3">Repeat-y</label>
+            <input id="q10-ans4" type="radio" name="question-10" value="0">
+            <label for="q10-ans4">No-repeat</label>
+          </fieldset>
+        </div>
+
+        <button type="button" id="calculate-score">Calculate Score</button>
+        <!-- Retry button - unchecks radios -->
+        <button type="button" id="retry">Retry</button>
+      </form>
+
+      <!-- div for all error and success messages -->
+      <div id="error-message"></div>
+
+      <script src="js/custom.js"></script>
+    </div>
+  </body>
+</html>
+
+
+
+

@@ -1,0 +1,58 @@
+/* colours
+Teal #1abc9c
+Grey #edf0f1
+*/
+body{
+  background-color: #000;
+  margin: 0;
+  color: #fff;
+}
+.container{
+  margin: auto;
+  width: 90%;
+  max-width: 900px;
+  min-width: 300px;
+}
+.content-box{
+  background-color: #edf0f1;
+  color: #000;
+  padding: 1em;
+  margin: .4em auto;
+  overflow: auto;
+}
+input[type="radio"], input[type="text"], input[type="text"] + label {
+  float: left;
+  clear: left;
+}
+input{
+  margin: .8em;
+  padding: 1.2em;
+}
+label{
+  float: left;
+  padding-top: .5em;
+}
+button{
+  background-color: #1abc9c;
+  color: #fff;
+  font-size: .9em;
+  padding: 1.2em;
+  margin: .2em 0 1em .3em;
+  float: right;
+  border: none;
+}
+button:hover{
+  opacity: .8;
+}
+.bold{
+  font-weight: bold;
+}
+fieldset{
+  border: none;
+}
+#quiz-form{
+  display: none;
+}
+#error-message{
+  color: red;
+}
