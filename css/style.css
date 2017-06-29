@@ -2,6 +2,9 @@
 Teal #1abc9c
 Grey #edf0f1
 */
+
+/* Structure
+-----------------------------------------------------*/
 body{
   background-color: #000;
   margin: 0;
@@ -19,7 +22,11 @@ body{
   padding: 1em;
   margin: .4em auto;
   overflow: auto;
+  border-radius: 20px 0 20px 0;
 }
+
+/* Forms
+-----------------------------------------------------*/
 input[type="radio"], input[type="text"], input[type="text"] + label {
   float: left;
   clear: left;
@@ -32,6 +39,12 @@ label{
   float: left;
   padding-top: .5em;
 }
+fieldset{
+  border: none;
+}
+
+/* Buttons
+-----------------------------------------------------*/
 button{
   background-color: #1abc9c;
   color: #fff;
@@ -40,24 +53,30 @@ button{
   margin: .2em 0 1em .3em;
   float: right;
   border: none;
+  border-radius: 10px 0 10px 0;
 }
 button:hover{
   opacity: .8;
 }
+button:focus{
+  outline: none;
+}
 #resit{
   float: left;
   margin-left: 0;
-  display: none;
 }
+
+/* Error / success messages
+-----------------------------------------------------*/
+#error-message{
+  color: #ff0000;
+}
+
+/* Styling classes
+-----------------------------------------------------*/
 .bold{
   font-weight: bold;
 }
-fieldset{
-  border: none;
-}
-#quiz-form{
+.hidden{
   display: none;
-}
-#error-message{
-  color: red;
 }

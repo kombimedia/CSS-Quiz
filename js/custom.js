@@ -1,8 +1,7 @@
-
+// Event listeners
 document.getElementById('start-quiz').addEventListener("click", signupValidate);
 document.getElementById('calculate-score').addEventListener("click", quizValidate);
 document.getElementById('retry').addEventListener("click", resetQuiz);
-var reStartQuiz = document.getElementById('resit');
 reStartQuiz.addEventListener("click", resitQuiz);
 
 // Global variables
@@ -10,6 +9,7 @@ var name, email, answers, radioButton;
 var signupForm = document.getElementById("sign-up");
 var quizForm = document.getElementById("quiz-form");
 var errorMessage = document.getElementById("error-message");
+var reStartQuiz = document.getElementById('resit');
 var questionAmount = 10;
 
 // Signup form validation
