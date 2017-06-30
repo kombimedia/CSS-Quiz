@@ -8,7 +8,7 @@ Grey #EDF0F1
 body{
   background-color: #000;
   margin: 0;
-  color: #FFFFFF;
+  color: #FFF;
 }
 .container{
   margin: auto;
@@ -19,7 +19,7 @@ body{
 .content-box{
   background-color: #EDF0F1;
   color: #000;
-  padding: 1em;
+  padding: 2em 1em;
   margin: .4em auto;
   overflow: auto;
   border-radius: 20px 0 20px 0;
@@ -47,7 +47,7 @@ fieldset{
 -----------------------------------------------------*/
 button{
   background-color: #1ABC9C;
-  color: #FFFFFF;
+  color: #FFF;
   font-size: .9em;
   padding: 1.2em;
   margin: .2em 0 1em .3em;
@@ -65,6 +65,13 @@ button:focus{
   float: left;
   margin-left: 0;
 }
+#next, #prev{
+  float: left;
+}
+.btn-pag{
+  background-color: #000;
+  border: 1px solid #1ABC9C;
+}
 
 /* Error / success messages
 -----------------------------------------------------*/
@@ -77,6 +84,15 @@ button:focus{
 .bold{
   font-weight: bold;
 }
+.clear{
+  clear: both;
+}
 .hidden{
   display: none;
+}
+.question{
+  display: none;
+}
+.active{
+  display: inherit;
 }

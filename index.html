@@ -22,7 +22,7 @@
 
       <form class="hidden" id="quiz-form">
       <!-- question #1 -->
-        <div class="content-box">
+        <div class="content-box question active">
           <fieldset>
             <legend class="bold">1. What does CSS stand for?</legend>
             <hr>
@@ -36,7 +36,7 @@
         </div>
 
         <!-- question #2 -->
-        <div class="content-box">
+        <div class="content-box question">
           <fieldset>
             <legend class="bold">2. Which attribute can set text to bold?</legend>
             <hr>
@@ -50,7 +50,7 @@
         </div>
 
         <!-- question #3 -->
-        <div class="content-box">
+        <div class="content-box question">
           <fieldset>
             <legend class="bold">3. Which tag is used to link an external CSS file?</legend>
             <hr>
@@ -64,7 +64,7 @@
         </div>
 
         <!-- question #4 -->
-        <div class="content-box">
+        <div class="content-box question">
           <fieldset>
             <legend class="bold">4. Which attribute sets the underline property?</legend>
             <hr>
@@ -78,7 +78,7 @@
         </div>
 
         <!-- question #5 -->
-        <div class="content-box">
+        <div class="content-box question">
           <fieldset>
             <legend class="bold">5. Which measurement is NOT relative?</legend>
             <hr>
@@ -94,7 +94,7 @@
         </div>
 
         <!-- question #6 -->
-        <div class="content-box">
+        <div class="content-box question">
           <fieldset>
             <legend class="bold">6. Which measurement unit IS relative?</legend>
             <hr>
@@ -110,7 +110,7 @@
         </div>
 
         <!-- question #7 -->
-        <div class="content-box">
+        <div class="content-box question">
           <fieldset>
             <legend class="bold">7. What attribute is used to move an elements content away from its border?</legend>
             <hr>
@@ -126,7 +126,7 @@
         </div>
 
         <!-- question #8 -->
-        <div class="content-box">
+        <div class="content-box question">
           <fieldset>
             <legend class="bold">8. Which attribute does not contribute to a block elements total width?</legend>
             <hr>
@@ -142,7 +142,7 @@
         </div>
 
         <!-- question #9 -->
-        <div class="content-box">
+        <div class="content-box question">
           <fieldset>
             <legend class="bold">9. What property changes a positioned elements display order?</legend>
             <hr>
@@ -158,7 +158,7 @@
         </div>
 
         <!-- question #10 -->
-        <div class="content-box">
+        <div class="content-box question">
           <fieldset>
             <legend class="bold">10. Which value of background-repeat will cause a background to repeat vertically?</legend>
             <hr>
@@ -173,15 +173,20 @@
           </fieldset>
         </div>
 
+        <button type="button" class="btn-pag" id="prev">Prev</button>
+        <button type="button" class="btn-pag" id="next">Next</button>
+
         <button type="button" id="calculate-score">Get Score</button>
         <!-- Retry button - unchecks radios -->
         <button type="button" id="retry">Reset</button>
       </form>
 
       <!-- div for all error and success messages -->
-      <div id="error-message"></div>
+      <div class="clear" id="error-message"></div>
       <button class="hidden" type="button" id="resit">Have Another Go!</button>
 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <!-- <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script> -->
       <script src="js/custom.js"></script>
     </div>
   </body>

@@ -93,7 +93,7 @@ function quizValidate() {
     // Once all questions are answered hide the quiz form and show congratulations message
     quizForm.style.display = 'none';
     reStartQuiz.style.display = 'block';
-    errorMessage.style.color = '#1abc9c';
+    errorMessage.style.color = '#1ABC9C';
     errorMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + totalScore + " out of " + questionAmount + "!</h3>");
 }
 
@@ -114,10 +114,19 @@ function resetQuiz(){
 function resitQuiz(){
   reStartQuiz.style.display = 'none';
   quizForm.style.display = 'block';
-  errorMessage.style.color = 'red';
+  errorMessage.style.color = '#FF0000';
   errorMessage.innerHTML = "";
   resetQuiz();
 }
 
+// Quiz question pagination
+$("#prev").on("click", function(){
+    if($(".question.active").index() > 0)
+        $(".question.active").removeClass("active").prev().addClass("active");
+});
+$("#next").on("click", function(){
+    if($(".question.active").index() < $(".question").length-1)
+        $(".question.active").removeClass("active").next().addClass("active");
+});
 
 
