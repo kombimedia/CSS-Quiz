@@ -172,18 +172,15 @@
             <label for="q10-ans4">No-repeat</label>
           </fieldset>
         </div>
-
-        <button type="button" class="btn-pag" id="prev">Prev</button>
+        <!-- Pagination buttons and 'Get Score' button -->
+        <button type="button" class="btn-pag btn-pag-invalid" id="prev">Prev</button>
         <button type="button" class="btn-pag" id="next">Next</button>
-
-        <button type="button" id="calculate-score">Get Score</button>
-        <!-- Retry button - unchecks radios -->
-        <!-- <button type="button" id="retry">Reset</button> -->
+        <button class="hidden" type="button" id="calculate-score">Get Score</button>
       </form>
 
-      <!-- div for all error and success messages -->
+      <!-- div for all error and success messages, restart quiz button-->
       <div class="clear" id="error-message"></div>
-      <button class="hidden" type="button" id="resit">Have Another Go!</button>
+      <button class="hidden" type="button" id="restart-quiz">Have Another Go!</button>
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="js/custom.js"></script>

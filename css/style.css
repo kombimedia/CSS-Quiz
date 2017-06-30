@@ -56,12 +56,12 @@ button{
   border-radius: 10px 0 10px 0;
 }
 button:hover{
-  opacity: .8;
+  opacity: .7;
 }
 button:focus{
   outline: none;
 }
-#resit{
+#restart-quiz{
   float: left;
   margin-left: 0;
 }
@@ -72,6 +72,9 @@ button:focus{
 .btn-pag{
   background-color: #000;
   border: 1px solid #1ABC9C;
+}
+.btn-pag-invalid{
+  opacity: .7;
 }
 
 /* Error / success messages
