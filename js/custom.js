@@ -109,8 +109,8 @@ function resetQuiz(){
           answers[radioButton].checked = false;
           reStartQuiz.style.display = 'none';
           quizForm.style.display = 'block';
-          questionOne.style.display = 'block';
-          questionTen.style.display = 'none';
+          questionOne.className = 'content-box question active q1';
+          questionTen.className = 'content-box question q10';
           errorMessage.style.color = '#FF0000';
           errorMessage.innerHTML = "";
       }
