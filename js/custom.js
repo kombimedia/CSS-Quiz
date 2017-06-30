@@ -1,9 +1,9 @@
 // Event listeners
 document.getElementById('start-quiz').addEventListener("click", signupValidate);
 document.getElementById('calculate-score').addEventListener("click", quizValidate);
-document.getElementById('retry').addEventListener("click", resetQuiz);
+// document.getElementById('retry').addEventListener("click", resetQuiz);
 var reStartQuiz = document.getElementById('resit');
-reStartQuiz.addEventListener("click", resitQuiz);
+reStartQuiz.addEventListener("click", resetQuiz);
 
 // Global variables
 var name, email, answers, radioButton, questionNumber;
@@ -97,27 +97,38 @@ function quizValidate() {
     errorMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + totalScore + " out of " + questionAmount + "!</h3>");
 }
 
-// Clear any error messages and uncheck all radios
+// Uncheck all radios, remove 'Have Another Go!' button, remove congratulations message, show quiz at question 1
 function resetQuiz(){
-  for (var questionNumber = 1; questionNumber <= questionAmount; questionNumber++) {
-    var ansChecked = false;
-    var answers = document.getElementsByName("question-" + questionNumber);
+  var questionOne =  document.querySelector('.q1');
+  var questionTen =  document.querySelector('.q10');
+    for (var questionNumber = 1; questionNumber <= questionAmount; questionNumber++) {
+      var ansChecked = false;
+      var answers = document.getElementsByName("question-" + questionNumber);
 
-    for (var radioButton = 0; radioButton < answers.length; radioButton++) {
-        answers[radioButton].checked = false;
-        errorMessage.innerHTML = "";
+      for (var radioButton = 0; radioButton < answers.length; radioButton++) {
+          answers[radioButton].checked = false;
+          reStartQuiz.style.display = 'none';
+          quizForm.style.display = 'block';
+          questionOne.style.display = 'block';
+          questionTen.style.display = 'none';
+          errorMessage.style.color = '#FF0000';
+          errorMessage.innerHTML = "";
+      }
     }
-  }
 }
 
 // Remove 'Have Another Go!' button, remove congratulations message, reset and show quiz
-function resitQuiz(){
-  reStartQuiz.style.display = 'none';
-  quizForm.style.display = 'block';
-  errorMessage.style.color = '#FF0000';
-  errorMessage.innerHTML = "";
-  resetQuiz();
-}
+// function resitQuiz(){
+//   var questionOne =  document.querySelector('.q1');
+//   var questionTen =  document.querySelector('.q10');
+//   reStartQuiz.style.display = 'none';
+//   quizForm.style.display = 'block';
+//   questionOne.style.display = 'block';
+//   questionTen.style.display = 'none';
+//   errorMessage.style.color = '#FF0000';
+//   errorMessage.innerHTML = "";
+//   resetQuiz();
+// }
 
 // Quiz question pagination
 $("#prev").on("click", function(){
