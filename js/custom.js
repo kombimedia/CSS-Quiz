@@ -7,7 +7,7 @@ getScore.addEventListener("click", quizValidate);
 haveAnotherGo.addEventListener("click", resetQuiz);
 
 // Global variables
-var name, email, answers, radioButton, questionNumber, quizInstruct, toValue;
+var name, email, answers, radioButton, questionNumber, quizInstruct;
 var signupForm = document.getElementById("sign-up");
 var quizInstruct = document.getElementById("quiz-instructions");
 var progressBar = document.getElementById("progress-container");
@@ -147,7 +147,7 @@ $(".btn-pag").click(function () {
 
 function animateProgress(diff) {
     var currValue = $("#progress").val();
-    toValue = currValue + diff;
+    var toValue = currValue + diff;
     toValue = toValue < 10 ? 10 : toValue;
     toValue = toValue > 100 ? 100 : toValue;
 
