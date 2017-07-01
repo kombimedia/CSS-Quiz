@@ -102,6 +102,7 @@ function quizValidate() {
     quizForm.style.display = 'none';
     haveAnotherGo.style.display = 'block';
     errorMessage.style.color = '#1ABC9C';
+    errorMessage.className = 'clear big-entrance';
     errorMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + totalScore + " out of " + questionAmount + "!</h3>");
 }
 
@@ -125,6 +126,7 @@ function resetQuiz(){
           nextButton.className = 'btn-pag';
           prevButton.className = 'btn-pag btn-pag-invalid';
           errorMessage.style.color = '#FF0000';
+          errorMessage.className = 'clear';
           errorMessage.innerHTML = "";
       }
     }
@@ -152,6 +154,8 @@ $("#next").on("click", function(){
   // Once on question 10 show 'calculate score' button
     if($(".question.active").index() === 9)
         $("#calculate-score").removeClass("hidden");
+        // Enable pulse effect on 'Get Score' button
+        $("#calculate-score").addClass("pulse");
   // Brighten appearance of 'prev' button when valid
     if($(".question.active").index() > 0)
         $("#prev").removeClass("btn-pag-invalid");
@@ -159,5 +163,10 @@ $("#next").on("click", function(){
     if($(".question.active").index() > 8)
         $("#next").addClass("btn-pag-invalid");
 });
+
+// 'Get Score' button pulse animation, disable on button click
+$('#calculate-score').click(function() {
+    $(this).removeClass("pulse");
+  });
 
 
