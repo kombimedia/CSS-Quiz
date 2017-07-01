@@ -132,7 +132,26 @@ function resetQuiz(){
     }
 }
 
+// Progress bar, on pagination click
+$(".btn-pag").click(function () {
+    animateProgress(parseInt($(this).data('diff')));
+});
+
+function animateProgress(diff) {
+    var currValue = $("#progress").val();
+    var toValue = currValue + diff;
+
+    toValue = toValue < 0 ? 0 : toValue;
+    toValue = toValue > 100 ? 100 : toValue;
+
+    $("#progress").animate({'value': toValue}, 500);
+}
+
+
+
+
 // Quiz question pagination buttons
+// Previous button
 $("#prev").on("click", function(){
   // Move to the previous question
     if($(".question.active").index() > 0)
@@ -147,6 +166,8 @@ $("#prev").on("click", function(){
     if($(".question.active").index() < 9)
         $("#next").removeClass("btn-pag-invalid");
 });
+
+// Next button
 $("#next").on("click", function(){
   // Move to the next question
     if($(".question.active").index() < $(".question").length-1)
@@ -168,5 +189,6 @@ $("#next").on("click", function(){
 $('#calculate-score').click(function() {
     $(this).removeClass("pulse");
   });
+
 
 

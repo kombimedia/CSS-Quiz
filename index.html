@@ -36,6 +36,10 @@
       </div>
 
       <form class="hidden" id="quiz-form">
+      <!-- Progress bar -->
+      <div id="progress-bar">
+        <progress id="progress" value='10' max='100'></progress>
+      </div>
       <!-- question #1 -->
         <div class="content-box question active q1 fade-in">
           <fieldset>
@@ -188,8 +192,8 @@
           </fieldset>
         </div>
         <!-- Pagination buttons and 'Get Score' button -->
-        <button type="button" class="btn-pag btn-pag-invalid" id="prev">Prev</button>
-        <button type="button" class="btn-pag" id="next">Next</button>
+        <button type="button" class="btn-pag btn-pag-invalid" id="prev" data-diff="-10">Prev</button>
+        <button type="button" class="btn-pag" id="next" data-diff="10">Next</button>
         <button class="hidden" type="button" id="calculate-score">Get Score</button>
       </form>
 
