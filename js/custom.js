@@ -10,6 +10,7 @@ haveAnotherGo.addEventListener("click", resetQuiz);
 var name, email, answers, radioButton, questionNumber, quizInstruct;
 var signupForm = document.getElementById("sign-up");
 var quizInstruct = document.getElementById("quiz-instructions");
+var progressBar = document.getElementById("progress-container");
 var quizForm = document.getElementById("quiz-form");
 var errorMessage = document.getElementById("error-message");
 var questionAmount = 10;
@@ -73,6 +74,7 @@ function validateEmail() {
 function closeInstructions(){
   quizInstruct.style.display = "none";
   quizForm.style.display = "block";
+  progressBar.style.display = "block";
 }
 
 // Quiz validation - Check that each question has an answer checked. Add the radio button value to the total score; false = 0 / true =  1
@@ -100,9 +102,10 @@ function quizValidate() {
     }
     // Once all questions are answered and 'Get Score' is clicked, hide the quiz form and show congratulations message
     quizForm.style.display = 'none';
+    progressBar.style.display = "none";
     haveAnotherGo.style.display = 'block';
     errorMessage.style.color = '#1ABC9C';
-    errorMessage.className = 'clear big-entrance';
+    errorMessage.className = 'clear fade-in';
     errorMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + totalScore + " out of " + questionAmount + "!</h3>");
 }
 
@@ -119,6 +122,7 @@ function resetQuiz(){
       for (var radioButton = 0; radioButton < answers.length; radioButton++) {
           answers[radioButton].checked = false;
           haveAnotherGo.style.display = 'none';
+          progressBar.style.display = "block";
           quizForm.style.display = 'block';
           questionOne.className = 'content-box question active q1';
           questionTen.className = 'content-box question q10';
@@ -140,15 +144,12 @@ $(".btn-pag").click(function () {
 function animateProgress(diff) {
     var currValue = $("#progress").val();
     var toValue = currValue + diff;
-
-    toValue = toValue < 0 ? 0 : toValue;
+    toValue = toValue < 10 ? 10 : toValue;
     toValue = toValue > 100 ? 100 : toValue;
 
     $("#progress").animate({'value': toValue}, 500);
+    $("#progress-value").html(toValue + "%");
 }
-
-
-
 
 // Quiz question pagination buttons
 // Previous button

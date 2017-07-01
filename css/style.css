@@ -51,21 +51,34 @@ label{
 fieldset{
   border: none;
 }
-#progress-bar{
-    width: 100%;
-    background-color: #000;
-    border: 1px solid #1ABC9C;
-    border-radius: 5px;
-    margin-top: 30px;
-    margin-bottom: 20px;
+#progress-container{
+  position: relative;
 }
-#progress{
-    width: 100%;
-    height: 30px;
-    background-color: #1ABC9C;
-    display: block;
+progress {
+  width: 100%;
+  border: 1px solid #1ABC9C;
+  border-radius: 5px;
+  height: 40px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  display: block;
 }
-
+progress::-webkit-progress-bar {
+  background-color: #000;
+  border-radius: 5px;
+}
+progress::-webkit-progress-value {
+  background-color: #1ABC9C;
+}
+progress::-moz-progress-bar {
+  background-color: #000;
+  border-radius: 5px;
+}
+#progress-value{
+  position: absolute;
+  top: 6px;
+  left: 20px;
+}
 /* Instructions
 -----------------------------------------------------*/
 .instructions{
@@ -212,81 +225,3 @@ button:focus{
     opacity: 0.7;
   }
 }
-
-/* Tossing animation
------------------------------------------------------*/
-.big-entrance{
-  animation-name: big-entrance;
-  -webkit-animation-name: big-entrance;
-
-  animation-duration: 1.6s;
-  -webkit-animation-duration: 1.6s;
-
-  animation-timing-function: ease-out;
-  -webkit-animation-timing-function: ease-out;
-
-  visibility: visible !important;
-}
-
-@keyframes big-entrance {
-  0% {
-    transform: scale(0.3) rotate(6deg) translateX(-30%) translateY(30%);
-    opacity: 0.2;
-  }
-  30% {
-    transform: scale(1.03) rotate(-2deg) translateX(2%) translateY(-2%);
-    opacity: 1;
-  }
-  45% {
-    transform: scale(0.98) rotate(1deg) translateX(0%) translateY(0%);
-    opacity: 1;
-  }
-  60% {
-    transform: scale(1.01) rotate(-1deg) translateX(0%) translateY(0%);
-    opacity: 1;
-  }
-  75% {
-    transform: scale(0.99) rotate(1deg) translateX(0%) translateY(0%);
-    opacity: 1;
-  }
-  90% {
-    transform: scale(1.01) rotate(0deg) translateX(0%) translateY(0%);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1) rotate(0deg) translateX(0%) translateY(0%);
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes big-entrance {
-  0% {
-    -webkit-transform: scale(0.3) rotate(6deg) translateX(-30%) translateY(30%);
-    opacity: 0.2;
-  }
-  30% {
-    -webkit-transform: scale(1.03) rotate(-2deg) translateX(2%) translateY(-2%);
-    opacity: 1;
-  }
-  45% {
-    -webkit-transform: scale(0.98) rotate(1deg) translateX(0%) translateY(0%);
-    opacity: 1;
-  }
-  60% {
-    -webkit-transform: scale(1.01) rotate(-1deg) translateX(0%) translateY(0%);
-    opacity: 1;
-  }
-  75% {
-    -webkit-transform: scale(0.99) rotate(1deg) translateX(0%) translateY(0%);
-    opacity: 1;
-  }
-  90% {
-    -webkit-transform: scale(1.01) rotate(0deg) translateX(0%) translateY(0%);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1) rotate(0deg) translateX(0%) translateY(0%);
-    opacity: 1;
-  }
-}
-

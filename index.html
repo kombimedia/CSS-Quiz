@@ -25,7 +25,7 @@
 
       <!-- Quiz user instructions, to show before quiz starts -->
       <div class="content-box hidden fade-in" id="quiz-instructions">
-          <p>Great work in taking the next step in achieving your CSS3 goals!</p>
+          <h3>Great work in taking the next step in achieving your CSS3 goals!</h3>
           <ul class="instructions">
             <li>This practice test consists of 10 questions.</li>
             <li>You are free to navigate through the questions and answer them in any order.</li>
@@ -35,11 +35,13 @@
           <button type="button" id="btn-instructions">Got It!</button>
       </div>
 
-      <form class="hidden" id="quiz-form">
       <!-- Progress bar -->
-      <div id="progress-bar">
-        <progress id="progress" value='10' max='100'></progress>
+      <div class="hidden fade-in" id="progress-container">
+      <progress id="progress" value='10' max='100'></progress>
+      <span id="progress-value">10%</span>
       </div>
+
+      <form class="hidden" id="quiz-form">
       <!-- question #1 -->
         <div class="content-box question active q1 fade-in">
           <fieldset>
@@ -192,8 +194,8 @@
           </fieldset>
         </div>
         <!-- Pagination buttons and 'Get Score' button -->
-        <button type="button" class="btn-pag btn-pag-invalid" id="prev" data-diff="-10">Prev</button>
-        <button type="button" class="btn-pag" id="next" data-diff="10">Next</button>
+        <button type="button" class="btn-pag btn-pag-invalid fade-in" id="prev" data-diff="-10">Prev</button>
+        <button type="button" class="btn-pag fade-in" id="next" data-diff="10">Next</button>
         <button class="hidden" type="button" id="calculate-score">Get Score</button>
       </form>
 
