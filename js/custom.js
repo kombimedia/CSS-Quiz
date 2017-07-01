@@ -7,7 +7,7 @@ getScore.addEventListener("click", quizValidate);
 haveAnotherGo.addEventListener("click", resetQuiz);
 
 // Global variables
-var name, email, answers, radioButton, questionNumber, quizInstruct;
+var name, email, answers, radioButton, questionNumber, quizInstruct, toValue;
 var signupForm = document.getElementById("sign-up");
 var quizInstruct = document.getElementById("quiz-instructions");
 var progressBar = document.getElementById("progress-container");
@@ -115,6 +115,8 @@ function resetQuiz(){
   var questionTen =  document.querySelector('.q10');
   var nextButton = document.getElementById('next');
   var prevButton = document.getElementById('prev');
+  var progress = document.getElementById('progress');
+  var progressValue = document.getElementById('progress-value');
     for (var questionNumber = 1; questionNumber <= questionAmount; questionNumber++) {
       var ansChecked = false;
       var answers = document.getElementsByName("question-" + questionNumber);
@@ -123,6 +125,8 @@ function resetQuiz(){
           answers[radioButton].checked = false;
           haveAnotherGo.style.display = 'none';
           progressBar.style.display = "block";
+          progress.value = 10;
+          progressValue.innerHTML = "10%";
           quizForm.style.display = 'block';
           questionOne.className = 'content-box question active q1';
           questionTen.className = 'content-box question q10';
@@ -143,7 +147,7 @@ $(".btn-pag").click(function () {
 
 function animateProgress(diff) {
     var currValue = $("#progress").val();
-    var toValue = currValue + diff;
+    toValue = currValue + diff;
     toValue = toValue < 10 ? 10 : toValue;
     toValue = toValue > 100 ? 100 : toValue;
 
