@@ -9,9 +9,12 @@ body{
   background-color: #000;
   margin: 0;
   color: #FFF;
+  font-family: 'Aref Ruqaa';
+  word-spacing: .15em;
 }
 .container{
   margin: auto;
+  margin-top: 100px;
   width: 90%;
   max-width: 900px;
   min-width: 300px;
@@ -23,6 +26,13 @@ body{
   margin: .4em auto .8em;
   overflow: auto;
   border-radius: 20px 0 20px 0;
+}
+
+/* Typography
+-----------------------------------------------------*/
+h1{
+  font-family: 'Aclonica';
+  word-spacing: .05em;
 }
 
 /* Forms
@@ -41,6 +51,12 @@ label{
 }
 fieldset{
   border: none;
+}
+
+/* Instructions
+-----------------------------------------------------*/
+.instructions{
+  line-height: 1.7em;
 }
 
 /* Buttons
@@ -75,6 +91,9 @@ button:focus{
 }
 .btn-pag-invalid{
   opacity: .7;
+}
+#btn-instructions{
+  float: left;
 }
 
 /* Error / success messages

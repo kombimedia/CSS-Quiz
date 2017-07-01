@@ -2,12 +2,14 @@
 var getScore = document.getElementById('calculate-score')
 var haveAnotherGo = document.getElementById('restart-quiz');
 document.getElementById('start-quiz').addEventListener("click", signupValidate);
+document.getElementById('btn-instructions').addEventListener("click", closeInstructions);
 getScore.addEventListener("click", quizValidate);
 haveAnotherGo.addEventListener("click", resetQuiz);
 
 // Global variables
-var name, email, answers, radioButton, questionNumber;
+var name, email, answers, radioButton, questionNumber, quizInstruct;
 var signupForm = document.getElementById("sign-up");
+var quizInstruct = document.getElementById("quiz-instructions");
 var quizForm = document.getElementById("quiz-form");
 var errorMessage = document.getElementById("error-message");
 var questionAmount = 10;
@@ -26,7 +28,7 @@ function signupValidate() {
     }
     // Once correct name and email have been entered, hide singup form, show quiz and remove error messages
     signupForm.style.display = "none";
-    quizForm.style.display = "block";
+    quizInstruct.style.display = "block";
     errorMessage.innerHTML = "";
 }
 
@@ -65,6 +67,12 @@ function validateEmail() {
     return "Oops.. " + email + " is not a valid email address. Please try again!";
   }
   return false;
+}
+
+// Hide the quiz instructions
+function closeInstructions(){
+  quizInstruct.style.display = "none";
+  quizForm.style.display = "block";
 }
 
 // Quiz validation - Check that each question has an answer checked. Add the radio button value to the total score; false = 0 / true =  1
