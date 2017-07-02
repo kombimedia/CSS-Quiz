@@ -1,5 +1,5 @@
 // Event listeners
-var getScore = document.getElementById('calculate-score')
+var getScore = document.getElementById('calculate-score');
 var haveAnotherGo = document.getElementById('restart-quiz');
 getScore.addEventListener("click", quizValidate);
 haveAnotherGo.addEventListener("click", resetQuiz);
@@ -12,6 +12,14 @@ var quizInstruct = document.getElementById("quiz-instructions");
 var quizForm = document.getElementById("quiz-form");
 var errorMessage = document.getElementById("error-message");
 var questionAmount = 10;
+
+// 'Enter' key to submit signform form
+var submitForm = document.getElementById('email-field');
+  submitForm.onkeydown = function (event) {
+    if (event.keyCode == 13) {
+        signupValidate();
+    }
+  };
 
 // Signup form validation
 function signupValidate() {
@@ -77,24 +85,24 @@ function closeInstructions(){
 
 // Quiz validation - Check that each question has an answer checked. Add the radio button value to the total score; false = 0 / true =  1
 function quizValidate() {
-  var unAnswered = "";
-  var totalScore = 0;
+  var notAnswered = "";
+  var scoreTotal = 0;
     for (var questionNumber = 1; questionNumber <= questionAmount; questionNumber++) {
       var ansChecked = false;
       var answers = document.getElementsByName("question-" + questionNumber);
 
       for (var radioButton = 0; radioButton < answers.length; radioButton++) {
         if (answers[radioButton].checked === true) {
-          totalScore += parseInt(answers[radioButton].value);
+          scoreTotal += parseInt(answers[radioButton].value);
           ansChecked = true;
         }
       }
       if (ansChecked === false) {
-        unAnswered += questionNumber + ", ";
+        notAnswered += questionNumber + ", ";
       }
     }
-    if (unAnswered !== "") {
-      errorMessage.innerHTML = ("Uh oh.. You haven't answered all the questions!<br>You still need to answer question(s) - " + unAnswered);
+    if (notAnswered !== "") {
+      errorMessage.innerHTML = ("Uh oh.. You haven't answered all the questions!<br>You still need to answer question(s) - " + notAnswered);
       return false;
     }
     // Once all questions are answered and 'Get Score' is clicked, hide the quiz form and show congratulations message
@@ -102,7 +110,7 @@ function quizValidate() {
     haveAnotherGo.style.display = 'block';
     errorMessage.style.color = '#1ABC9C';
     errorMessage.className = 'clear fade-in';
-    errorMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + totalScore + " out of " + questionAmount + "!</h3>");
+    errorMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + scoreTotal + " out of " + questionAmount + "!</h3>");
 }
 
 // Uncheck all radios, remove 'Have Another Go!' button, remove congratulations message, show quiz at question 1, reset 'next' and 'prev' buttons
