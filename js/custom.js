@@ -1,22 +1,21 @@
 // Event listeners
 var getScore = document.getElementById('calculate-score')
 var haveAnotherGo = document.getElementById('restart-quiz');
-document.getElementById('start-quiz').addEventListener("click", signupValidate);
-document.getElementById('btn-instructions').addEventListener("click", closeInstructions);
 getScore.addEventListener("click", quizValidate);
 haveAnotherGo.addEventListener("click", resetQuiz);
+document.getElementById('start-quiz').addEventListener("click", signupValidate);
+document.getElementById('btn-instructions').addEventListener("click", closeInstructions);
 
 // Global variables
-var name, email, answers, radioButton, questionNumber, quizInstruct;
-var signupForm = document.getElementById("sign-up");
+var name, answers, radioButton, questionNumber;
 var quizInstruct = document.getElementById("quiz-instructions");
-var progressBar = document.getElementById("progress-container");
 var quizForm = document.getElementById("quiz-form");
 var errorMessage = document.getElementById("error-message");
 var questionAmount = 10;
 
 // Signup form validation
 function signupValidate() {
+  var signupForm = document.getElementById("sign-up");
   var validName = validateName();
   var validEmail = validateEmail();
     if (validName) {
@@ -27,7 +26,7 @@ function signupValidate() {
       errorMessage.innerHTML = validEmail;
       return;
     }
-    // Once correct name and email have been entered, hide singup form, show quiz and remove error messages
+    // Once correct name and email have been entered, hide singup form, show quiz instructions and remove error messages
     signupForm.style.display = "none";
     quizInstruct.style.display = "block";
     errorMessage.innerHTML = "";
@@ -51,9 +50,9 @@ function validateName() {
     return false;
 }
 
-// validate email field - checking that the field isn't empty, there is 1 @ symbol, there are at least 2 characters between the @ and the dot and the email address is at least 8 characters long
+// validate email field - check that the field isn't empty, there is 1 @ symbol, there are at least 2 characters between the @ and the dot and the email address is at least 8 characters long
 function validateEmail() {
-  email = document.getElementById('email-field').value;
+  var email = document.getElementById('email-field').value;
   var atPos = email.indexOf("@");
   var dotPos = email.indexOf(".");
   var secondAtPos = email.lastIndexOf("@") !== atPos;
@@ -70,11 +69,10 @@ function validateEmail() {
   return false;
 }
 
-// Hide the quiz instructions
+// Hide the quiz instructions once 'Got It' button is clicked
 function closeInstructions(){
   quizInstruct.style.display = "none";
   quizForm.style.display = "block";
-  progressBar.style.display = "block";
 }
 
 // Quiz validation - Check that each question has an answer checked. Add the radio button value to the total score; false = 0 / true =  1
@@ -95,14 +93,12 @@ function quizValidate() {
         unAnswered += questionNumber + ", ";
       }
     }
-
     if (unAnswered !== "") {
       errorMessage.innerHTML = ("Uh oh.. You haven't answered all the questions!<br>You still need to answer question(s) - " + unAnswered);
       return false;
     }
     // Once all questions are answered and 'Get Score' is clicked, hide the quiz form and show congratulations message
     quizForm.style.display = 'none';
-    progressBar.style.display = "none";
     haveAnotherGo.style.display = 'block';
     errorMessage.style.color = '#1ABC9C';
     errorMessage.className = 'clear fade-in';
@@ -123,28 +119,27 @@ function resetQuiz(){
 
       for (var radioButton = 0; radioButton < answers.length; radioButton++) {
           answers[radioButton].checked = false;
-          haveAnotherGo.style.display = 'none';
-          progressBar.style.display = "block";
-          progress.value = 10;
-          progressValue.innerHTML = "10%";
-          quizForm.style.display = 'block';
-          questionOne.className = 'content-box question active q1';
-          questionTen.className = 'content-box question q10';
-          getScore.className = 'hidden';
-          nextButton.className = 'btn-pag';
-          prevButton.className = 'btn-pag btn-pag-invalid';
-          errorMessage.style.color = '#FF0000';
-          errorMessage.className = 'clear';
-          errorMessage.innerHTML = "";
       }
     }
+    haveAnotherGo.style.display = 'none';
+    progress.value = 10;
+    progressValue.innerHTML = "10%";
+    quizForm.style.display = 'block';
+    questionOne.className = 'content-box question active q1';
+    questionTen.className = 'content-box question q10';
+    getScore.className = 'hidden';
+    nextButton.className = 'btn-pag';
+    prevButton.className = 'btn-pag btn-pag-invalid';
+    errorMessage.style.color = '#FF0000';
+    //errorMessage.className = 'clear';
+    errorMessage.innerHTML = "";
 }
 
 // Progress bar, on pagination click
 $(".btn-pag").click(function () {
     animateProgress(parseInt($(this).data('diff')));
 });
-
+// Animate progress bar by pre-defined value, set min and max progress, populate value %  per click
 function animateProgress(diff) {
     var currValue = $("#progress").val();
     var toValue = currValue + diff;
@@ -177,7 +172,7 @@ $("#next").on("click", function(){
   // Move to the next question
     if($(".question.active").index() < $(".question").length-1)
         $(".question.active").removeClass("active").next().addClass("active");
-  // Once on question 10 show 'calculate score' button
+  // Once on question 10, show 'calculate score' button
     if($(".question.active").index() === 9)
         $("#calculate-score").removeClass("hidden");
         // Enable pulse effect on 'Get Score' button
