@@ -79,6 +79,31 @@ progress::-moz-progress-bar {
   top: 6px;
   left: 20px;
 }
+
+
+.progress{
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+.col{
+  width: 10%;
+  float: left;
+  text-align: center;
+}
+.circle{
+  width: 4em;
+  height: 4em;
+  border: 1px solid #1ABC9C;
+  border-radius: 50%;
+  display: inline-block;
+  line-height: 3.6em;
+  margin-right: .6em;
+}
+.circle:last-child{
+  margin-right: 0;
+}
+
 /* Instructions
 -----------------------------------------------------*/
 .instructions{
@@ -145,6 +170,14 @@ button:focus{
 .active{
   display: inherit;
 }
+.red{
+  background-color: #FF0000;
+  border: none;
+}
+.teal{
+  background-color: #1ABC9C;
+  border: none;
+}
 
 /* Fade in animation
 -----------------------------------------------------*/
@@ -189,8 +222,8 @@ button:focus{
   animation-name: pulse;
   -webkit-animation-name: pulse;
 
-  animation-duration: 300ms;
-  -webkit-animation-duration: 300ms;
+  animation-duration: 1000ms;
+  -webkit-animation-duration: 1000ms;
 
   animation-iteration-count: infinite;
   -webkit-animation-iteration-count: infinite;

@@ -35,8 +35,37 @@
           <button type="button" id="btn-instructions">Got It!</button>
       </div>
 
-      <div class="hidden fade-in" id="quiz-form">
+      <div class="fade-in" id="quiz-form">
         <!-- Progress bar -->
+
+        <!-- Quiz progress and navigation -->
+        <div class="progress">
+          <span class="col circle" id="pro1">1</span>
+          <span class="col circle" id="pro2">2</span>
+          <span class="col circle" id="pro3">3</span>
+          <span class="col circle" id="pro4">4</span>
+          <span class="col circle" id="pro5">5</span>
+          <span class="col circle" id="pro6">6</span>
+          <span class="col circle" id="pro7">7</span>
+          <span class="col circle" id="pro8">8</span>
+          <span class="col circle" id="pro9">9</span>
+          <span class="col circle" id="pro10">10</span>
+        </div>
+<!--
+        <div class="progress">
+          <div class="col"><span class="circle teal" id="pro1">1</span></div>
+          <div class="col"><span class="circle" id="pro2">2</span></div>
+          <div class="col"><span class="circle" id="pro3">3</span></div>
+          <div class="col"><span class="circle" id="pro4">4</span></div>
+          <div class="col"><span class="circle" id="pro5">5</span></div>
+          <div class="col"><span class="circle" id="pro6">6</span></div>
+          <div class="col"><span class="circle" id="pro7">7</span></div>
+          <div class="col"><span class="circle" id="pro8">8</span></div>
+          <div class="col"><span class="circle" id="pro9">9</span></div>
+          <div class="col"><span class="circle" id="pro10">10</span></div>
+        </div> -->
+
+
         <div id="progress-container">
           <progress id="progress" value='10' max='100'></progress>
           <span id="progress-value">10%</span>
@@ -48,7 +77,7 @@
             <fieldset>
               <legend class="bold">1. What does CSS stand for?</legend>
               <hr>
-              <input id="q1-ans1" type="radio" name="question-1" value="0">
+              <input id="q1-ans1" type="radio" name="question-1" value="0" onclick="markProgress(this)">
               <label for="q1-ans1">Cascading CSS</label>
               <input id="q1-ans2"  type="radio" name="question-1" value="1">
               <label for="q1-ans2">Cascading style sheets</label>

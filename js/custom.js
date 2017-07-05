@@ -7,7 +7,7 @@ document.getElementById('start-quiz').addEventListener("click", signupValidate);
 document.getElementById('btn-instructions').addEventListener("click", closeInstructions);
 
 // Global variables
-var name, answers, radioButton, questionNumber;
+var name, answers, radioButton, questionNumber, ansChecked;
 var quizInstruct = document.getElementById("quiz-instructions");
 var quizForm = document.getElementById("quiz-form");
 var errorMessage = document.getElementById("error-message");
@@ -77,6 +77,18 @@ function validateEmail() {
   return false;
 }
 
+
+function markProgress() {
+  var  progessComplete = document.querySelector('.circle');
+    if (this.checked === true) {
+      progessComplete.classList.add('teal');
+    }
+}
+
+
+
+
+
 // Hide the quiz instructions once 'Got It' button is clicked
 function closeInstructions(){
   quizInstruct.style.display = "none";
@@ -88,7 +100,7 @@ function quizValidate() {
   var notAnswered = "";
   var scoreTotal = 0;
     for (var questionNumber = 1; questionNumber <= questionAmount; questionNumber++) {
-      var ansChecked = false;
+      ansChecked = false;
       var answers = document.getElementsByName("question-" + questionNumber);
 
       for (var radioButton = 0; radioButton < answers.length; radioButton++) {
@@ -105,11 +117,12 @@ function quizValidate() {
       errorMessage.innerHTML = ("Uh oh.. You haven't answered all the questions!<br>You still need to answer question(s) - " + notAnswered);
       return false;
     }
+
     // Once all questions are answered and 'Get Score' is clicked, hide the quiz form and show congratulations message
     quizForm.style.display = 'none';
     haveAnotherGo.style.display = 'block';
     errorMessage.style.color = '#1ABC9C';
-    errorMessage.className = 'clear fade-in';
+    errorMessage.classList.add('fade-in');
     errorMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + scoreTotal + " out of " + questionAmount + "!</h3>");
 }
 
@@ -133,13 +146,12 @@ function resetQuiz(){
     progress.value = 10;
     progressValue.innerHTML = "10%";
     quizForm.style.display = 'block';
-    questionOne.className = 'content-box question active q1';
-    questionTen.className = 'content-box question q10';
+    questionOne.classList.add('active');
+    questionTen.classList.remove('active');
     getScore.className = 'hidden';
-    nextButton.className = 'btn-pag';
-    prevButton.className = 'btn-pag btn-pag-invalid';
+    nextButton.classList.remove('btn-pag-invalid');
+    prevButton.classList.add('btn-pag-invalid');
     errorMessage.style.color = '#FF0000';
-    //errorMessage.className = 'clear';
     errorMessage.innerHTML = "";
 }
 
@@ -178,13 +190,16 @@ $("#prev").on("click", function(){
 // Next button
 $("#next").on("click", function(){
   // Move to the next question
-    if($(".question.active").index() < $(".question").length-1)
+    if($(".question.active").index() < $(".question").length-1) {
         $(".question.active").removeClass("active").next().addClass("active");
+        $(".circle.teal").next().addClass("teal");
+    }
   // Once on question 10, show 'calculate score' button
-    if($(".question.active").index() === 9)
+    if($(".question.active").index() === 9) {
         $("#calculate-score").removeClass("hidden");
         // Enable pulse effect on 'Get Score' button
         $("#calculate-score").addClass("pulse");
+    }
   // Brighten appearance of 'prev' button when valid
     if($(".question.active").index() > 0)
         $("#prev").removeClass("btn-pag-invalid");
