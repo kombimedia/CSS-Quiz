@@ -8,9 +8,11 @@ document.getElementById('btn-instructions').addEventListener("click", closeInstr
 
 // Global variables
 var name, answers, radioButton, questionNumber, ansChecked;
-var quizInstruct = document.getElementById("quiz-instructions");
-var quizForm = document.getElementById("quiz-form");
-var errorMessage = document.getElementById("error-message");
+var quizInstruct = document.getElementById('quiz-instructions');
+var quizForm = document.getElementById('quiz-form');
+var progessComplete = document.querySelector('.circle.active');
+var errorMessage = document.getElementById('error-message');
+var completedMessageBox = document.getElementById('completed-message-box');
 var questionAmount = 10;
 
 // 'Enter' key to submit signform form
@@ -77,18 +79,6 @@ function validateEmail() {
   return false;
 }
 
-
-function markProgress() {
-  var  progessComplete = document.querySelector('.circle');
-    if (this.checked === true) {
-      progessComplete.classList.add('teal');
-    }
-}
-
-
-
-
-
 // Hide the quiz instructions once 'Got It' button is clicked
 function closeInstructions(){
   quizInstruct.style.display = "none";
@@ -99,6 +89,7 @@ function closeInstructions(){
 function quizValidate() {
   var notAnswered = "";
   var scoreTotal = 0;
+  var completedMessage = document.getElementById('completed-message');
     for (var questionNumber = 1; questionNumber <= questionAmount; questionNumber++) {
       ansChecked = false;
       var answers = document.getElementsByName("question-" + questionNumber);
@@ -120,10 +111,19 @@ function quizValidate() {
 
     // Once all questions are answered and 'Get Score' is clicked, hide the quiz form and show congratulations message
     quizForm.style.display = 'none';
-    haveAnotherGo.style.display = 'block';
-    errorMessage.style.color = '#1ABC9C';
-    errorMessage.classList.add('fade-in');
-    errorMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + scoreTotal + " out of " + questionAmount + "!</h3>");
+    //haveAnotherGo.style.display = 'block';
+    completedMessageBox.style.display = 'block';
+    //errorMessage.style.color = '#1ABC9C';
+    //errorMessage.classList.add('fade-in');
+    completedMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + scoreTotal + " out of " + questionAmount + "!</h3>");
+}
+
+// Once a question is answered, mark the corresponding progress circle teal
+function markProgress(input) {
+  var progessComplete = document.querySelector('.circle.active');
+    if (input.checked === true) {
+      progessComplete.classList.add('teal');
+    }
 }
 
 // Uncheck all radios, remove 'Have Another Go!' button, remove congratulations message, show quiz at question 1, reset 'next' and 'prev' buttons
@@ -149,10 +149,36 @@ function resetQuiz(){
     questionOne.classList.add('active');
     questionTen.classList.remove('active');
     getScore.className = 'hidden';
-    nextButton.classList.remove('btn-pag-invalid');
-    prevButton.classList.add('btn-pag-invalid');
-    errorMessage.style.color = '#FF0000';
+    nextButton.classList.remove('hidden');
+    prevButton.classList.add('hide');
+    completedMessageBox.style.display = 'none';
+    //errorMessage.style.color = '#FF0000';
     errorMessage.innerHTML = "";
+    resetProgress()
+}
+
+// Reset progress circles, remove fill colour, return 'active' to circle 1
+function resetProgress() {
+  // Get each circle
+  var pro1 = document.getElementById('pro1');
+  var pro2 = document.getElementById('pro2');
+  var pro3 = document.getElementById('pro3');
+  var pro4 = document.getElementById('pro4');
+  var pro5 = document.getElementById('pro5');
+  var pro6 = document.getElementById('pro6');
+  var pro7 = document.getElementById('pro7');
+  var pro8 = document.getElementById('pro8');
+  var pro9 = document.getElementById('pro9');
+  var pro10 = document.getElementById('pro10');
+  // Create an array of all of the circles
+  var allPros = [pro1, pro2, pro3, pro4, pro5, pro6, pro7, pro8, pro9, pro10]
+    // Remove the 'teal' class from each circle
+    allPros.forEach(function(el) {
+    el.classList.remove('teal');
+    })
+    // Remove 'active' class from circle 10 and add it to circle 1
+    pro10.classList.remove('active', 'pulse');
+    pro1.classList.add('active', 'pulse');
 }
 
 // Progress bar, on pagination click
@@ -174,17 +200,19 @@ function animateProgress(diff) {
 // Previous button
 $("#prev").on("click", function(){
   // Move to the previous question
-    if($(".question.active").index() > 0)
+    if($(".question.active").index() > 0) {
         $(".question.active").removeClass("active").prev().addClass("active");
+        $(".circle.active").removeClass("active pulse").prev().addClass("active pulse");
+    }
   // Remove 'calculate score' button if moving back to question 9 or lower
     if($(".question.active").index() < 9)
         $("#calculate-score").addClass("hidden");
   // Dull appearance of 'prev' button when not valid
     if($(".question.active").index() < 1)
-        $("#prev").addClass("btn-pag-invalid");
+        $("#prev").addClass("hide");
   // Brighten appearance of 'next' button when valid
     if($(".question.active").index() < 9)
-        $("#next").removeClass("btn-pag-invalid");
+        $("#next").removeClass("hidden");
 });
 
 // Next button
@@ -192,7 +220,7 @@ $("#next").on("click", function(){
   // Move to the next question
     if($(".question.active").index() < $(".question").length-1) {
         $(".question.active").removeClass("active").next().addClass("active");
-        $(".circle.teal").next().addClass("teal");
+        $(".circle.active").removeClass("active pulse").next().addClass("active pulse");
     }
   // Once on question 10, show 'calculate score' button
     if($(".question.active").index() === 9) {
@@ -202,10 +230,10 @@ $("#next").on("click", function(){
     }
   // Brighten appearance of 'prev' button when valid
     if($(".question.active").index() > 0)
-        $("#prev").removeClass("btn-pag-invalid");
+        $("#prev").removeClass("hide");
   // Dull appearance of 'next' button when not valid
     if($(".question.active").index() > 8)
-        $("#next").addClass("btn-pag-invalid");
+        $("#next").addClass("hidden");
 });
 
 // 'Get Score' button pulse animation, disable on button click
