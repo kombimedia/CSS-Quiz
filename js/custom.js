@@ -115,6 +115,7 @@ function quizValidate() {
     completedMessageBox.style.display = 'block';
     //errorMessage.style.color = '#1ABC9C';
     //errorMessage.classList.add('fade-in');
+    errorMessage.innerHTML = "";
     completedMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + scoreTotal + " out of " + questionAmount + "!</h3>");
 }
 
