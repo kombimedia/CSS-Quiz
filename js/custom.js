@@ -1,7 +1,7 @@
 // Event listeners
 var getScore = document.getElementById('calculate-score');
 var haveAnotherGo = document.getElementById('restart-quiz');
-getScore.addEventListener("click", quizValidate);
+getScore.addEventListener("click", loading);
 haveAnotherGo.addEventListener("click", resetQuiz);
 document.getElementById('start-quiz').addEventListener("click", signupValidate);
 document.getElementById('btn-instructions').addEventListener("click", closeInstructions);
@@ -11,6 +11,7 @@ var name, answers, radioButton, questionNumber, ansChecked;
 var quizInstruct = document.getElementById('quiz-instructions');
 var quizForm = document.getElementById('quiz-form');
 var progessComplete = document.querySelector('.circle.active');
+
 var errorMessage = document.getElementById('error-message');
 var completedMessageBox = document.getElementById('completed-message-box');
 var questionAmount = 10;
@@ -26,20 +27,21 @@ var submitForm = document.getElementById('email-field');
 // Signup form validation
 function signupValidate() {
   var signupForm = document.getElementById("sign-up");
+  var signupMessage = document.getElementById('signup-error-message');
   var validName = validateName();
   var validEmail = validateEmail();
     if (validName) {
-      errorMessage.innerHTML = validName;
+      signupMessage.innerHTML = validName;
       return;
     }
     if (validEmail) {
-      errorMessage.innerHTML = validEmail;
+      signupMessage.innerHTML = validEmail;
       return;
     }
     // Once correct name and email have been entered, hide singup form, show quiz instructions and remove error messages
     signupForm.style.display = "none";
     quizInstruct.style.display = "block";
-    errorMessage.innerHTML = "";
+    signupMessage.innerHTML = "";
 }
 
 // Validate Name field - checking that the field isn't empty, there is at least one space and that first and last names are at least 2 characters long
@@ -151,7 +153,7 @@ function resetQuiz(){
     questionTen.classList.remove('active');
     getScore.className = 'hidden';
     nextButton.classList.remove('hidden');
-    prevButton.classList.add('hide');
+    prevButton.classList.add('btn-pag-invalid');
     completedMessageBox.style.display = 'none';
     //errorMessage.style.color = '#FF0000';
     errorMessage.innerHTML = "";
@@ -210,7 +212,7 @@ $("#prev").on("click", function(){
         $("#calculate-score").addClass("hidden");
   // Dull appearance of 'prev' button when not valid
     if($(".question.active").index() < 1)
-        $("#prev").addClass("hide");
+        $("#prev").addClass("btn-pag-invalid");
   // Brighten appearance of 'next' button when valid
     if($(".question.active").index() < 9)
         $("#next").removeClass("hidden");
@@ -227,20 +229,30 @@ $("#next").on("click", function(){
     if($(".question.active").index() === 9) {
         $("#calculate-score").removeClass("hidden");
         // Enable pulse effect on 'Get Score' button
-        $("#calculate-score").addClass("pulse");
+        //$("#calculate-score").addClass("pulse");
     }
   // Brighten appearance of 'prev' button when valid
     if($(".question.active").index() > 0)
-        $("#prev").removeClass("hide");
+        $("#prev").removeClass("btn-pag-invalid");
   // Dull appearance of 'next' button when not valid
     if($(".question.active").index() > 8)
         $("#next").addClass("hidden");
 });
 
+// 'Get Score' button loading animation on click function
+function loading(){
+  getScore.innerHTML = ('<i class="fa fa-circle-o-notch fa-spin"></i>Get Score!');
+  setTimeout(quizValidate, 3500);
+  setTimeout(stopLoading, 3500);
+}
+function stopLoading(){
+  getScore.innerHTML = ('Get Score!');
+}
+
 // 'Get Score' button pulse animation, disable on button click
-$('#calculate-score').click(function() {
-    $(this).removeClass("pulse");
-  });
+// $('#calculate-score').click(function() {
+//     $(this).removeClass("pulse");
+//   });
 
 
 

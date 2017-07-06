@@ -7,7 +7,7 @@
     <title>CSS Quiz</title>
     <link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Aref Ruqaa' rel='stylesheet'>
-    <!-- <link rel="stylesheet" href="css/animations.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
@@ -21,7 +21,7 @@
         <input type="text" id="email-field" placeholder="email@domain.co.nz">
         <!-- Validation button for signup form -->
         <button id="start-quiz">Let's Go!</button>
-        <!-- <div class="clear" id="error-message"></div> -->
+        <div class="clear" id="signup-error-message"></div>
       </div>
 
       <!-- Quiz user instructions, to show before quiz starts -->
@@ -211,13 +211,13 @@
             </fieldset>
           </div>
           <!-- Pagination buttons and 'Get Score' button -->
-          <button type="button" class="btn-pag hide" id="prev" data-diff="-10">Prev Question</button>
+          <button type="button" class="btn-pag btn-pag-invalid" id="prev" data-diff="-10">Prev Question</button>
           <button type="button" class="btn-pag" id="next" data-diff="10">Next Question</button>
           <button class="hidden" type="button" id="calculate-score">Get Score!</button>
         </form>
       </div>
 
-      <!-- div for all error and success messages, restart quiz button-->
+      <!-- div for quiz error messages, restart quiz button-->
       <div class="clear" id="error-message"></div>
       <div class="content-box fade-in hidden" id="completed-message-box">
         <span id="completed-message"></span>

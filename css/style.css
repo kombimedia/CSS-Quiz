@@ -143,17 +143,20 @@ button:focus{
   background-color: #000;
   border: 1px solid #1ABC9C;
 }
-/*.btn-pag-invalid{
+.btn-pag-invalid{
   opacity: .7;
-}*/
+}
 #btn-instructions{
   float: left;
 }
 
 /* Error / success messages
 -----------------------------------------------------*/
-#error-message{
+#signup-error-message{
   color: #FF0000;
+}
+#error-message{
+  color: #FFFFFF;
 }
 #completed-message-box{
   text-align: center;
@@ -169,9 +172,9 @@ button:focus{
 .hidden{
   display: none;
 }
-.hide{
+/*.hide{
   visibility: hidden;
-}
+}*/
 .question{
   display: none;
 }
@@ -264,4 +267,10 @@ button:focus{
     -webkit-transform: scale(0.95);
     opacity: 0.7;
   }
+}
+
+/* Loading animation
+-----------------------------------------------------*/
+.fa {
+    margin-right: 10px;
 }
