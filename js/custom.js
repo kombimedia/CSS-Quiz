@@ -113,10 +113,7 @@ function quizValidate() {
 
     // Once all questions are answered and 'Get Score' is clicked, hide the quiz form and show congratulations message
     quizForm.style.display = 'none';
-    //haveAnotherGo.style.display = 'block';
     completedMessageBox.style.display = 'block';
-    //errorMessage.style.color = '#1ABC9C';
-    //errorMessage.classList.add('fade-in');
     errorMessage.innerHTML = "";
     completedMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + scoreTotal + " out of " + questionAmount + "!</h3>");
 }
@@ -155,12 +152,33 @@ function resetQuiz(){
     nextButton.classList.remove('hidden');
     prevButton.classList.add('btn-pag-invalid');
     completedMessageBox.style.display = 'none';
-    //errorMessage.style.color = '#FF0000';
     errorMessage.innerHTML = "";
     resetProgress()
 }
 
 // Reset progress circles, remove fill colour, return 'active' to circle 1
+
+//   var pro1 = document.getElementById('pro1');
+//   var pro2 = document.getElementById('pro2');
+//   var pro3 = document.getElementById('pro3');
+//   var pro4 = document.getElementById('pro4');
+//   var pro5 = document.getElementById('pro5');
+//   var pro6 = document.getElementById('pro6');
+//   var pro7 = document.getElementById('pro7');
+//   var pro8 = document.getElementById('pro8');
+//   var pro9 = document.getElementById('pro9');
+//   var pro10 = document.getElementById('pro10');
+//   var allPros = [pro1, pro2, pro3, pro4, pro5, pro6, pro7, pro8, pro9, pro10]
+
+// function markUnAnswered() {
+//   var unAnswered = " ";
+//   if (allPros.checked !== true) {
+//       return unAnswered;
+//       unAnswered.classList.add('red');
+//     }
+// }
+
+
 function resetProgress() {
   // Get each circle
   var pro1 = document.getElementById('pro1');
@@ -244,7 +262,9 @@ function loading(){
   getScore.innerHTML = ('<i class="fa fa-circle-o-notch fa-spin"></i>Get Score!');
   setTimeout(quizValidate, 3500);
   setTimeout(stopLoading, 3500);
+  // setTimeout(markUnAnswered, 3500);
 }
+// Stop loading animation once time delay has passed
 function stopLoading(){
   getScore.innerHTML = ('Get Score!');
 }
