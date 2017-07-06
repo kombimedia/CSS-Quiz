@@ -197,7 +197,7 @@ function resetProgress() {
     allPros.forEach(function(el) {
     el.classList.remove('teal');
     })
-    // Remove 'active' class from circle 10 and add it to circle 1
+    // Remove 'active' and 'Pulse' class' from circle 10 and add them to circle 1
     pro10.classList.remove('active', 'pulse');
     pro1.classList.add('active', 'pulse');
 }

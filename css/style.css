@@ -133,11 +133,9 @@ button:focus{
 }
 #prev{
   float: left;
-  /*margin-right: .5em;*/
 }
 #next,{
   float: right;
-  /*margin-right: .5em;*/
 }
 .btn-pag{
   background-color: #000;
