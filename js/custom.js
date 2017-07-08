@@ -103,12 +103,9 @@ function quizValidate() {
         }
       }
       if (ansChecked === false) {
-        notAnswered += questionNumber + ", ";
+        errorMessage.innerHTML = ("Uh oh.. You haven't answered all the questions! Please answer questions marked with red");
+        return false;
       }
-    }
-    if (notAnswered !== "") {
-      errorMessage.innerHTML = ("Uh oh.. You haven't answered all the questions!<br>You still need to answer question(s) - " + notAnswered);
-      return false;
     }
 
     // Once all questions are answered and 'Get Score' is clicked, hide the quiz form and show congratulations message
@@ -123,6 +120,7 @@ function markProgress(input) {
   var progessComplete = document.querySelector('.circle.active');
     if (input.checked === true) {
       progessComplete.classList.add('teal');
+      progessComplete.classList.remove('un-answered', 'red');
     }
 }
 
@@ -156,29 +154,15 @@ function resetQuiz(){
     resetProgress()
 }
 
+// Mark answered progress circles red
+function markUnAnswered() {
+  var unAnswered = document.getElementsByClassName('un-answered');
+    for(circle=0; circle<unAnswered.length; circle++) {
+      unAnswered[circle].classList.add('red')
+    }
+}
+
 // Reset progress circles, remove fill colour, return 'active' to circle 1
-
-//   var pro1 = document.getElementById('pro1');
-//   var pro2 = document.getElementById('pro2');
-//   var pro3 = document.getElementById('pro3');
-//   var pro4 = document.getElementById('pro4');
-//   var pro5 = document.getElementById('pro5');
-//   var pro6 = document.getElementById('pro6');
-//   var pro7 = document.getElementById('pro7');
-//   var pro8 = document.getElementById('pro8');
-//   var pro9 = document.getElementById('pro9');
-//   var pro10 = document.getElementById('pro10');
-//   var allPros = [pro1, pro2, pro3, pro4, pro5, pro6, pro7, pro8, pro9, pro10]
-
-// function markUnAnswered() {
-//   var unAnswered = " ";
-//   if (allPros.checked !== true) {
-//       return unAnswered;
-//       unAnswered.classList.add('red');
-//     }
-// }
-
-
 function resetProgress() {
   // Get each circle
   var pro1 = document.getElementById('pro1');
@@ -195,7 +179,8 @@ function resetProgress() {
   var allPros = [pro1, pro2, pro3, pro4, pro5, pro6, pro7, pro8, pro9, pro10]
     // Remove the 'teal' class from each circle
     allPros.forEach(function(el) {
-    el.classList.remove('teal');
+    el.classList.remove('red', 'teal');
+    el.classList.add('un-answered');
     })
     // Remove 'active' and 'Pulse' class' from circle 10 and add them to circle 1
     pro10.classList.remove('active', 'pulse');
@@ -225,7 +210,7 @@ $("#prev").on("click", function(){
         $(".question.active").removeClass("active").prev().addClass("active");
         $(".circle.active").removeClass("active pulse").prev().addClass("active pulse");
     }
-  // Remove 'calculate score' button if moving back to question 9 or lower
+  // Hide 'calculate score' button if moving back to question 9 or lower
     if($(".question.active").index() < 9)
         $("#calculate-score").addClass("hidden");
   // Dull appearance of 'prev' button when not valid
@@ -252,20 +237,26 @@ $("#next").on("click", function(){
   // Brighten appearance of 'prev' button when valid
     if($(".question.active").index() > 0)
         $("#prev").removeClass("btn-pag-invalid");
-  // Dull appearance of 'next' button when not valid
+  // hide 'next' button when not valid
     if($(".question.active").index() > 8)
         $("#next").addClass("hidden");
 });
 
 // 'Get Score' button loading animation on click function
-function loading(){
+function loading() {
+  var pro10 = document.getElementById('pro10');
   getScore.innerHTML = ('<i class="fa fa-circle-o-notch fa-spin"></i>Get Score!');
+  // Run validate quiz
   setTimeout(quizValidate, 3500);
+  // Run - stop loading animation
   setTimeout(stopLoading, 3500);
-  // setTimeout(markUnAnswered, 3500);
+  // Run - mark unanswered circles red
+  setTimeout(markUnAnswered, 3500);
+  // Stop pulse animation on circle 10
+  pro10.classList.remove('pulse');
 }
 // Stop loading animation once time delay has passed
-function stopLoading(){
+function stopLoading() {
   getScore.innerHTML = ('Get Score!');
 }
 

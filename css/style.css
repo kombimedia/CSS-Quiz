@@ -170,9 +170,9 @@ button:focus{
 .hidden{
   display: none;
 }
-/*.hide{
+.hide{
   visibility: hidden;
-}*/
+}
 .question{
   display: none;
 }
