@@ -158,7 +158,7 @@ function resetQuiz(){
 function markUnAnswered() {
   var unAnswered = document.getElementsByClassName('un-answered');
     for(circle=0; circle<unAnswered.length; circle++) {
-      unAnswered[circle].classList.add('red')
+      unAnswered[circle].classList.add('red', 'pulse')
     }
 }
 
