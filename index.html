@@ -39,6 +39,19 @@
       <div class="fade-in hidden" id="quiz-form">
 
         <!-- Progress and navigation -->
+        <!-- <div class="progress" id="pro-link">
+          <a href="#" class="col un-answered circle active pulse" id="pro1">1</a>
+          <a href="#" class="col un-answered circle" id="pro2">2</a>
+          <a href="#" class="col un-answered circle" id="pro3">3</a>
+          <a href="#" class="col un-answered circle" id="pro4">4</a>
+          <a href="#" class="col un-answered circle" id="pro5">5</a>
+          <a href="#" class="col un-answered circle" id="pro6">6</a>
+          <a href="#" class="col un-answered circle" id="pro7">7</a>
+          <a href="#" class="col un-answered circle" id="pro8">8</a>
+          <a href="#" class="col un-answered circle" id="pro9">9</a>
+          <a href="#"" class="col un-answered circle" id="pro10">10</a>
+        </div> -->
+
         <div class="progress">
           <span class="col un-answered circle active pulse" id="pro1">1</span>
           <span class="col un-answered circle" id="pro2">2</span>
@@ -58,9 +71,9 @@
           <span id="progress-value">10%</span>
         </div>
         <!-- Quiz form -->
-        <form>
+        <form id="link-questions">   <!-- added id's for form and each question div -->
         <!-- Question #1 -->
-          <div class="content-box question active q1 fade-in">
+          <div class="content-box q1 fade-in question active" id="q-div-1">
             <fieldset>
               <legend class="bold">1. What does CSS stand for?</legend>
               <hr>
@@ -74,7 +87,7 @@
           </div>
 
           <!-- Question #2 -->
-          <div class="content-box question fade-in">
+          <div class="content-box fade-in question" id="q-div-2">
             <fieldset>
               <legend class="bold">2. Which attribute can set text to bold?</legend>
               <hr>
@@ -88,7 +101,7 @@
           </div>
 
           <!-- Question #3 -->
-          <div class="content-box question fade-in">
+          <div class="content-box fade-in question" id="q-div-3">
             <fieldset>
               <legend class="bold">3. Which tag is used to link an external CSS file?</legend>
               <hr>
@@ -102,7 +115,7 @@
           </div>
 
           <!-- Question #4 -->
-          <div class="content-box question fade-in">
+          <div class="content-box fade-in question" id="q-div-4">
             <fieldset>
               <legend class="bold">4. Which attribute sets the underline property?</legend>
               <hr>
@@ -116,7 +129,7 @@
           </div>
 
           <!-- Question #5 -->
-          <div class="content-box question fade-in">
+          <div class="content-box fade-in question" id="q-div-5">
             <fieldset>
               <legend class="bold">5. Which measurement is NOT relative?</legend>
               <hr>
@@ -132,7 +145,7 @@
           </div>
 
           <!-- Question #6 -->
-          <div class="content-box question fade-in">
+          <div class="content-box fade-in question" id="q-div-6">
             <fieldset>
               <legend class="bold">6. Which measurement unit IS relative?</legend>
               <hr>
@@ -148,7 +161,7 @@
           </div>
 
           <!-- Question #7 -->
-          <div class="content-box question fade-in">
+          <div class="content-box fade-in question" id="q-div-7">
             <fieldset>
               <legend class="bold">7. What attribute is used to move an elements content away from its border?</legend>
               <hr>
@@ -164,7 +177,7 @@
           </div>
 
           <!-- Question #8 -->
-          <div class="content-box question fade-in">
+          <div class="content-box fade-in question" id="q-div-8">
             <fieldset>
               <legend class="bold">8. Which attribute does not contribute to a block elements total width?</legend>
               <hr>
@@ -180,7 +193,7 @@
           </div>
 
           <!-- Question #9 -->
-          <div class="content-box question fade-in">
+          <div class="content-box fade-in question" id="q-div-9">
             <fieldset>
               <legend class="bold">9. What property changes a positioned elements display order?</legend>
               <hr>
@@ -196,17 +209,17 @@
           </div>
 
           <!-- Question #10 -->
-          <div class="content-box question q10 fade-in">
+          <div class="content-box fade-in question" id="q-div-10">
             <fieldset>
               <legend class="bold">10. Which value of background-repeat will cause a background to repeat vertically?</legend>
               <hr>
-              <input id="q10-ans1" type="radio" name="question-10" value="0" onclick="markProgress(this)">
+              <input id="q10-ans1" type="radio" name="question-10" value="0" onclick="markProgress(this), showGetScore(this)">
               <label for="q10-ans1">Repeat-x</label>
-              <input id="q10-ans2" type="radio" name="question-10" value="0" onclick="markProgress(this)">
+              <input id="q10-ans2" type="radio" name="question-10" value="0" onclick="markProgress(this), showGetScore(this)">
               <label for="q10-ans2">Repeat</label>
-              <input id="q10-ans3" type="radio" name="question-10" value="1" onclick="markProgress(this)">
+              <input id="q10-ans3" type="radio" name="question-10" value="1" onclick="markProgress(this), showGetScore(this)">
               <label for="q10-ans3">Repeat-y</label>
-              <input id="q10-ans4" type="radio" name="question-10" value="0" onclick="markProgress(this)">
+              <input id="q10-ans4" type="radio" name="question-10" value="0" onclick="markProgress(this), showGetScore(this)">
               <label for="q10-ans4">No-repeat</label>
             </fieldset>
           </div>

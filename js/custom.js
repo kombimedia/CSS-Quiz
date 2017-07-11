@@ -1,17 +1,20 @@
-// Event listeners
+// Get buttons
 var getScore = document.getElementById('calculate-score');
 var haveAnotherGo = document.getElementById('restart-quiz');
+var letsGo = document.getElementById('start-quiz');
+var gotIt = document.getElementById('btn-instructions');
+
+// Add Event listeners
 getScore.addEventListener("click", loading);
 haveAnotherGo.addEventListener("click", resetQuiz);
-document.getElementById('start-quiz').addEventListener("click", signupValidate);
-document.getElementById('btn-instructions').addEventListener("click", closeInstructions);
+letsGo.addEventListener("click", signupValidate);
+gotIt.addEventListener("click", closeInstructions);
 
 // Global variables
 var name, answers, radioButton, questionNumber, ansChecked;
 var quizInstruct = document.getElementById('quiz-instructions');
 var quizForm = document.getElementById('quiz-form');
 var progessComplete = document.querySelector('.circle.active');
-
 var errorMessage = document.getElementById('error-message');
 var completedMessageBox = document.getElementById('completed-message-box');
 var questionAmount = 10;
@@ -124,10 +127,17 @@ function markProgress(input) {
     }
 }
 
+// Show 'Get Score' button once question 10 has an answer selected
+function showGetScore(input) {
+    if (input.checked === true) {
+      getScore.classList.remove('hidden');
+    }
+}
+
 // Uncheck all radios, remove 'Have Another Go!' button, remove congratulations message, show quiz at question 1, reset 'next' and 'prev' buttons
 function resetQuiz(){
-  var questionOne =  document.querySelector('.q1');
-  var questionTen =  document.querySelector('.q10');
+  var questionOne = document.querySelector('.q1');
+  var activeQuestion = document.querySelector('.question.active');
   var nextButton = document.getElementById('next');
   var prevButton = document.getElementById('prev');
   var progress = document.getElementById('progress');
@@ -140,25 +150,25 @@ function resetQuiz(){
           answers[radioButton].checked = false;
       }
     }
-    haveAnotherGo.style.display = 'none';
+    // haveAnotherGo.style.display = 'none';
     progress.value = 10;
     progressValue.innerHTML = "10%";
     quizForm.style.display = 'block';
+    activeQuestion.classList.remove('active');
     questionOne.classList.add('active');
-    questionTen.classList.remove('active');
     getScore.className = 'hidden';
-    nextButton.classList.remove('hidden');
+    nextButton.classList.remove('btn-pag-invalid');
     prevButton.classList.add('btn-pag-invalid');
     completedMessageBox.style.display = 'none';
     errorMessage.innerHTML = "";
     resetProgress()
 }
 
-// Mark answered progress circles red
+// Mark un-answered progress circles red
 function markUnAnswered() {
   var unAnswered = document.getElementsByClassName('un-answered');
     for(circle=0; circle<unAnswered.length; circle++) {
-      unAnswered[circle].classList.add('red', 'pulse')
+      unAnswered[circle].classList.add('red')
     }
 }
 
@@ -179,11 +189,10 @@ function resetProgress() {
   var allPros = [pro1, pro2, pro3, pro4, pro5, pro6, pro7, pro8, pro9, pro10]
     // Remove the 'teal' class from each circle
     allPros.forEach(function(el) {
-    el.classList.remove('red', 'teal');
+    el.classList.remove('red', 'teal', 'pulse', 'active');
     el.classList.add('un-answered');
     })
-    // Remove 'active' and 'Pulse' class' from circle 10 and add them to circle 1
-    pro10.classList.remove('active', 'pulse');
+    // Add 'Active' and 'Pulse' class' to circle 1
     pro1.classList.add('active', 'pulse');
 }
 
@@ -211,14 +220,14 @@ $("#prev").on("click", function(){
         $(".circle.active").removeClass("active pulse").prev().addClass("active pulse");
     }
   // Hide 'calculate score' button if moving back to question 9 or lower
-    if($(".question.active").index() < 9)
-        $("#calculate-score").addClass("hidden");
+    // if($(".question.active").index() < 9)
+    //     $("#calculate-score").addClass("hidden");
   // Dull appearance of 'prev' button when not valid
     if($(".question.active").index() < 1)
         $("#prev").addClass("btn-pag-invalid");
   // Brighten appearance of 'next' button when valid
     if($(".question.active").index() < 9)
-        $("#next").removeClass("hidden");
+        $("#next").removeClass("btn-pag-invalid");
 });
 
 // Next button
@@ -228,19 +237,22 @@ $("#next").on("click", function(){
         $(".question.active").removeClass("active").next().addClass("active");
         $(".circle.active").removeClass("active pulse").next().addClass("active pulse");
     }
-  // Once on question 10, show 'calculate score' button
-    if($(".question.active").index() === 9) {
-        $("#calculate-score").removeClass("hidden");
-        // Enable pulse effect on 'Get Score' button
-        //$("#calculate-score").addClass("pulse");
-    }
   // Brighten appearance of 'prev' button when valid
     if($(".question.active").index() > 0)
         $("#prev").removeClass("btn-pag-invalid");
   // hide 'next' button when not valid
     if($(".question.active").index() > 8)
-        $("#next").addClass("hidden");
+        $("#next").addClass("btn-pag-invalid");
 });
+
+
+// // Link to questions from progress circles
+// $("#pro-link a").click(function(e) {
+//     e.preventDefault();
+//     $("#link-questions > div").removeClass("active");
+//     var id = $(this).attr("id").replace("pro","");
+//     $("#q-div-"+id).addClass("active");
+// });
 
 // 'Get Score' button loading animation on click function
 function loading() {
