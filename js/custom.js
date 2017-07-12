@@ -110,7 +110,6 @@ function quizValidate() {
         return false;
       }
     }
-
     // Once all questions are answered and 'Get Score' is clicked, hide the quiz form and show congratulations message
     quizForm.style.display = 'none';
     completedMessageBox.style.display = 'block';
@@ -245,27 +244,43 @@ $("#next").on("click", function(){
         $("#next").addClass("btn-pag-invalid");
 });
 
+// Link to questions from progress circles
+$("#pro-link a").click(function(e) {
+    e.preventDefault();
+    $(".circle.active").removeClass("active pulse");
+    $("#link-questions > div").removeClass("active");
 
-// // Link to questions from progress circles
-// $("#pro-link a").click(function(e) {
-//     e.preventDefault();
-//     $("#link-questions > div").removeClass("active");
-//     var id = $(this).attr("id").replace("pro","");
-//     $("#q-div-"+id).addClass("active");
-// });
+      var id = $(this).attr("id").replace("pro","");
+      // Add 'activate' and 'pulse' class' to clicked progress circle
+      $("#pro"+id).addClass("active pulse");
+      // Add 'activate' class to appropriate question
+      $("#q-div-"+id).addClass("active");
+      // Dull appearance of 'prev' button when not valid
+      if($("#q-div-"+id).index() < 1)
+          $("#prev").addClass("btn-pag-invalid");
+      // Brighten appearance of 'prev' button when valid
+      if($("#q-div-"+id).index() > 0)
+          $("#prev").removeClass("btn-pag-invalid");
+      // Brighten appearance of 'next' button when valid
+      if($("#q-div-"+id).index() < 9)
+          $("#next").removeClass("btn-pag-invalid");
+      // hide 'next' button when not valid
+      if($("#q-div-"+id).index() > 8)
+          $("#next").addClass("btn-pag-invalid");
+});
 
 // 'Get Score' button loading animation on click function
 function loading() {
-  var pro10 = document.getElementById('pro10');
+  var activeCircle = document.querySelector('.circle.active')
   getScore.innerHTML = ('<i class="fa fa-circle-o-notch fa-spin"></i>Get Score!');
-  // Run validate quiz
+  // Run validate quiz function
   setTimeout(quizValidate, 3500);
-  // Run - stop loading animation
+  // Run - stop loading animation function
   setTimeout(stopLoading, 3500);
-  // Run - mark unanswered circles red
+  // Run - mark unanswered circles red function
   setTimeout(markUnAnswered, 3500);
-  // Stop pulse animation on circle 10
-  pro10.classList.remove('pulse');
+  // Stop pulse animation on active circle
+  activeCircle.classList.remove('pulse');
 }
 // Stop loading animation once time delay has passed
 function stopLoading() {
