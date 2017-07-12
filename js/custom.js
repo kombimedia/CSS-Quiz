@@ -65,7 +65,7 @@ function validateName() {
     return false;
 }
 
-// validate email field - check that the field isn't empty, there is 1 @ symbol, there are at least 2 characters between the @ and the dot and the email address is at least 8 characters long
+// validate email field - check that the field isn't empty, there is 1 x @ symbol, there are at least 2 characters between the @ and the first dot and the email address is at least 9 characters long
 function validateEmail() {
   var email = document.getElementById('email-field').value;
   var atPos = email.indexOf("@");
@@ -90,9 +90,25 @@ function closeInstructions(){
   quizForm.style.display = "block";
 }
 
+// Once a question is answered, mark the corresponding progress circle teal
+function markProgress(input) {
+  var progessComplete = document.querySelector('.circle.active');
+    if (input.checked === true) {
+      progessComplete.classList.add('teal');
+      progessComplete.classList.remove('un-answered', 'red');
+    }
+}
+
+// Show 'Get Score' button once question 10 has an answer selected
+function showGetScore(input) {
+    if (input.checked === true) {
+      getScore.classList.remove('hidden');
+    }
+}
+
 // Quiz validation - Check that each question has an answer checked. Add the radio button value to the total score; false = 0 / true =  1
 function quizValidate() {
-  var notAnswered = "";
+  // var notAnswered = "";
   var scoreTotal = 0;
   var completedMessage = document.getElementById('completed-message');
     for (var questionNumber = 1; questionNumber <= questionAmount; questionNumber++) {
@@ -117,23 +133,33 @@ function quizValidate() {
     completedMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + scoreTotal + " out of " + questionAmount + "!</h3>");
 }
 
-// Once a question is answered, mark the corresponding progress circle teal
-function markProgress(input) {
-  var progessComplete = document.querySelector('.circle.active');
-    if (input.checked === true) {
-      progessComplete.classList.add('teal');
-      progessComplete.classList.remove('un-answered', 'red');
+// Mark un-answered progress circles red
+function markUnAnswered() {
+  var unAnswered = document.getElementsByClassName('un-answered');
+    for(circle=0; circle<unAnswered.length; circle++) {
+      unAnswered[circle].classList.add('red')
     }
 }
 
-// Show 'Get Score' button once question 10 has an answer selected
-function showGetScore(input) {
-    if (input.checked === true) {
-      getScore.classList.remove('hidden');
-    }
+// 'Get Score' button loading animation on click function
+function loading() {
+  var activeCircle = document.querySelector('.circle.active')
+  getScore.innerHTML = ('<i class="fa fa-circle-o-notch fa-spin expandopen"></i>Get Score!');
+  // Run validate quiz function
+  setTimeout(quizValidate, 3500);
+  // Run - stop loading animation function
+  setTimeout(stopLoading, 3500);
+  // Run - mark unanswered circles red function
+  setTimeout(markUnAnswered, 3500);
+  // Stop pulse animation on active circle
+  activeCircle.classList.remove('pulse');
+}
+// Stop loading animation once time delay has passed
+function stopLoading() {
+  getScore.innerHTML = ('Get Score!');
 }
 
-// Uncheck all radios, remove 'Have Another Go!' button, remove congratulations message, show quiz at question 1, reset 'next' and 'prev' buttons
+// Uncheck all radios, hide 'Have Another Go!' button, hide congratulations message, show quiz at question 1, reset 'next' and 'prev' buttons, reset progress circles
 function resetQuiz(){
   var questionOne = document.querySelector('.q1');
   var activeQuestion = document.querySelector('.question.active');
@@ -149,7 +175,6 @@ function resetQuiz(){
           answers[radioButton].checked = false;
       }
     }
-    // haveAnotherGo.style.display = 'none';
     progress.value = 10;
     progressValue.innerHTML = "10%";
     quizForm.style.display = 'block';
@@ -163,15 +188,7 @@ function resetQuiz(){
     resetProgress()
 }
 
-// Mark un-answered progress circles red
-function markUnAnswered() {
-  var unAnswered = document.getElementsByClassName('un-answered');
-    for(circle=0; circle<unAnswered.length; circle++) {
-      unAnswered[circle].classList.add('red')
-    }
-}
-
-// Reset progress circles, remove fill colour, return 'active' to circle 1
+// Reset progress circles, remove fill colour, return 'active' class to circle 1
 function resetProgress() {
   // Get each circle
   var pro1 = document.getElementById('pro1');
@@ -186,7 +203,7 @@ function resetProgress() {
   var pro10 = document.getElementById('pro10');
   // Create an array of all of the circles
   var allPros = [pro1, pro2, pro3, pro4, pro5, pro6, pro7, pro8, pro9, pro10]
-    // Remove the 'teal' class from each circle
+    // Remove the un-required class' from each circle and add 'un-answered' class
     allPros.forEach(function(el) {
     el.classList.remove('red', 'teal', 'pulse', 'active');
     el.classList.add('un-answered');
@@ -218,9 +235,6 @@ $("#prev").on("click", function(){
         $(".question.active").removeClass("active").prev().addClass("active");
         $(".circle.active").removeClass("active pulse").prev().addClass("active pulse");
     }
-  // Hide 'calculate score' button if moving back to question 9 or lower
-    // if($(".question.active").index() < 9)
-    //     $("#calculate-score").addClass("hidden");
   // Dull appearance of 'prev' button when not valid
     if($(".question.active").index() < 1)
         $("#prev").addClass("btn-pag-invalid");
@@ -239,7 +253,7 @@ $("#next").on("click", function(){
   // Brighten appearance of 'prev' button when valid
     if($(".question.active").index() > 0)
         $("#prev").removeClass("btn-pag-invalid");
-  // hide 'next' button when not valid
+  // Dull appearance of 'next' button when not valid
     if($(".question.active").index() > 8)
         $("#next").addClass("btn-pag-invalid");
 });
@@ -251,9 +265,9 @@ $("#pro-link a").click(function(e) {
     $("#link-questions > div").removeClass("active");
 
       var id = $(this).attr("id").replace("pro","");
-      // Add 'activate' and 'pulse' class' to clicked progress circle
+      // Add 'active' and 'pulse' class' to clicked progress circle
       $("#pro"+id).addClass("active pulse");
-      // Add 'activate' class to appropriate question
+      // Add 'active' class to appropriate question
       $("#q-div-"+id).addClass("active");
       // Dull appearance of 'prev' button when not valid
       if($("#q-div-"+id).index() < 1)
@@ -264,33 +278,7 @@ $("#pro-link a").click(function(e) {
       // Brighten appearance of 'next' button when valid
       if($("#q-div-"+id).index() < 9)
           $("#next").removeClass("btn-pag-invalid");
-      // hide 'next' button when not valid
+      // Dull appearance 'next' button when not valid
       if($("#q-div-"+id).index() > 8)
           $("#next").addClass("btn-pag-invalid");
 });
-
-// 'Get Score' button loading animation on click function
-function loading() {
-  var activeCircle = document.querySelector('.circle.active')
-  getScore.innerHTML = ('<i class="fa fa-circle-o-notch fa-spin"></i>Get Score!');
-  // Run validate quiz function
-  setTimeout(quizValidate, 3500);
-  // Run - stop loading animation function
-  setTimeout(stopLoading, 3500);
-  // Run - mark unanswered circles red function
-  setTimeout(markUnAnswered, 3500);
-  // Stop pulse animation on active circle
-  activeCircle.classList.remove('pulse');
-}
-// Stop loading animation once time delay has passed
-function stopLoading() {
-  getScore.innerHTML = ('Get Score!');
-}
-
-// 'Get Score' button pulse animation, disable on button click
-// $('#calculate-score').click(function() {
-//     $(this).removeClass("pulse");
-//   });
-
-
-
