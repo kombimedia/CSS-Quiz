@@ -144,7 +144,7 @@ function markUnAnswered() {
 // 'Get Score' button loading animation on click function
 function loading() {
   var activeCircle = document.querySelector('.circle.active')
-  getScore.innerHTML = ('<i class="fa fa-circle-o-notch fa-spin expandopen"></i>Get Score!');
+  getScore.innerHTML = ('<i class="fa fa-circle-o-notch fa-spin"></i>Get Score!');
   // Run validate quiz function
   setTimeout(quizValidate, 3500);
   // Run - stop loading animation function
