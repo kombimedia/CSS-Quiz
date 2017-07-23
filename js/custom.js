@@ -122,7 +122,7 @@ function quizValidate() {
         }
       }
       if (ansChecked === false) {
-        errorMessage.innerHTML = ("Uh oh.. You haven't answered all the questions! Please answer questions marked with red");
+        errorMessage.innerHTML = ("Uh oh.. You haven't answered all the questions! Please <u>click</u> circles marked with red to answer questions");
         return false;
       }
     }
