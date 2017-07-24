@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CSS Quiz</title>
     <link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Aref Ruqaa' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Aref%20Ruqaa' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/style.css" rel="stylesheet">
   </head>
@@ -23,7 +23,6 @@
         <button id="start-quiz">Let's Go!</button>
         <div class="clear" id="signup-error-message"></div>
       </div>
-
       <!-- Quiz user instructions, to show before quiz starts -->
       <div class="content-box hidden fade-in" id="quiz-instructions">
           <h3>Great work in taking the next step in achieving your CSS3 goals!</h3>
@@ -37,8 +36,7 @@
       </div>
 
       <div class="fade-in hidden" id="quiz-form">
-
-        <!-- Progress and navigation -->
+        <!-- Progress and navigation for large screens -->
         <div class="progress-circles">
           <div class="progress" id="pro-link">
             <a href="#" class="col un-answered circle active pulse" id="pro1">1</a>
@@ -50,18 +48,17 @@
             <a href="#" class="col un-answered circle" id="pro7">7</a>
             <a href="#" class="col un-answered circle" id="pro8">8</a>
             <a href="#" class="col un-answered circle" id="pro9">9</a>
-            <a href="#"" class="col un-answered circle" id="pro10">10</a>
+            <a href="#" class="col un-answered circle" id="pro10">10</a>
           </div>
           <div class="clear" id="error-message"></div>
         </div>
-
-        <!-- Progress bar -->
+        <!-- Progress bar for small screens -->
         <div id="progress-container">
           <progress id="progress" value='10' max='100'></progress>
           <span id="progress-value">10%</span>
         </div>
         <!-- Quiz form -->
-        <form id="link-questions">   <!-- added id's for form and each question div -->
+        <form id="link-questions">
         <!-- Question #1 -->
           <div class="content-box q1 fade-in question active" id="q-div-1">
             <fieldset>
@@ -75,7 +72,6 @@
               <label for="q1-ans3">Cascading separate style</label>
             </fieldset>
           </div>
-
           <!-- Question #2 -->
           <div class="content-box fade-in question" id="q-div-2">
             <fieldset>
@@ -89,7 +85,6 @@
               <label for="q2-ans3">Font weight</label>
             </fieldset>
           </div>
-
           <!-- Question #3 -->
           <div class="content-box fade-in question" id="q-div-3">
             <fieldset>
@@ -103,7 +98,6 @@
               <label for="q3-ans3">Rel</label>
             </fieldset>
           </div>
-
           <!-- Question #4 -->
           <div class="content-box fade-in question" id="q-div-4">
             <fieldset>
@@ -117,7 +111,6 @@
               <label for="q4-ans3">Font weight</label>
             </fieldset>
           </div>
-
           <!-- Question #5 -->
           <div class="content-box fade-in question" id="q-div-5">
             <fieldset>
@@ -133,7 +126,6 @@
               <label for="q5-ans4">Em</label>
             </fieldset>
           </div>
-
           <!-- Question #6 -->
           <div class="content-box fade-in question" id="q-div-6">
             <fieldset>
@@ -149,7 +141,6 @@
               <label for="q6-ans4">Inch</label>
             </fieldset>
           </div>
-
           <!-- Question #7 -->
           <div class="content-box fade-in question" id="q-div-7">
             <fieldset>
@@ -165,7 +156,6 @@
               <label for="q7-ans4">Width</label>
             </fieldset>
           </div>
-
           <!-- Question #8 -->
           <div class="content-box fade-in question" id="q-div-8">
             <fieldset>
@@ -181,7 +171,6 @@
               <label for="q8-ans4">Padding</label>
             </fieldset>
           </div>
-
           <!-- Question #9 -->
           <div class="content-box fade-in question" id="q-div-9">
             <fieldset>
@@ -197,7 +186,6 @@
               <label for="q9-ans4">Azimuth</label>
             </fieldset>
           </div>
-
           <!-- Question #10 -->
           <div class="content-box fade-in question" id="q-div-10">
             <fieldset>
@@ -219,7 +207,6 @@
           <button class="hidden expandOpen teal" type="button" id="calculate-score">Get Score!</button>
         </form>
       </div>
-
       <!-- div for quiz error messages, restart quiz button-->
       <div class="clear hidden" id="error-message-pb"></div>
       <div class="content-box fade-in hidden" id="completed-message-box">

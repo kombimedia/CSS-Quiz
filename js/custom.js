@@ -123,16 +123,15 @@ function quizValidate() {
         }
       }
       if (ansChecked === false) {
+        // Print unanswered error message for large screens, progress circles
         errorMessage.innerHTML = ("Uh oh... You haven't answered all the questions! Please <u>click</u> circles marked with <u>red</u> to answer remaining questions.");
-        // Display unanswered questions for small screens <768px
+        // Save unanswered question numbers for small screen error message
         notAnswered += questionNumber + ", ";
-        //return false;
       }
     }
 
-    // Print unanswered error message for small screens <768px
     if(notAnswered !== "") {
-    // if not all questions are answered
+    // Print unanswered error message for small screens, progress bar
     errorMessagePB.innerHTML = ("Uh oh... You still need to answer question(s) " + notAnswered);
     return false;
   }
@@ -145,7 +144,7 @@ function quizValidate() {
     completedMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + scoreTotal + " out of " + questionAmount + "!</h3>");
 }
 
-// Mark un-answered progress circles red
+// Mark unanswered progress circles red
 function markUnAnswered() {
   var unAnswered = document.getElementsByClassName('un-answered');
     for(circle=0; circle<unAnswered.length; circle++) {
@@ -158,11 +157,11 @@ function loading() {
   var activeCircle = document.querySelector('.circle.active')
   getScore.innerHTML = ('<i class="fa fa-circle-o-notch fa-spin"></i>Get Score!');
   // Run validate quiz function
-  setTimeout(quizValidate, 3500);
+  setTimeout(quizValidate, 2000);
   // Run - stop loading animation function
-  setTimeout(stopLoading, 3500);
+  setTimeout(stopLoading, 2000);
   // Run - mark unanswered circles red function
-  setTimeout(markUnAnswered, 3500);
+  setTimeout(markUnAnswered, 2000);
   // Stop pulse animation on active circle
   activeCircle.classList.remove('pulse');
 }
@@ -171,7 +170,7 @@ function stopLoading() {
   getScore.innerHTML = ('Get Score!');
 }
 
-// Uncheck all radios, hide 'Have Another Go!' button, hide congratulations message, show quiz at question 1, reset 'next' and 'prev' buttons, reset progress circles
+// Reset quiz function - uncheck all radios, hide 'Have Another Go!' button, hide congratulations message, and error messages show quiz at question 1, reset 'next' and 'prev' buttons, reset progress bar and 'Get Score' button
 function resetQuiz(){
   var questionOne = document.querySelector('.q1');
   var activeQuestion = document.querySelector('.question.active');
@@ -192,7 +191,6 @@ function resetQuiz(){
     quizForm.style.display = 'block';
     activeQuestion.classList.remove('active');
     questionOne.classList.add('active');
-    //getScore.className = 'hidden expandOpen';
     getScore.classList.add('hidden','expandOpen','teal');
     nextButton.classList.remove('btn-pag-invalid');
     prevButton.classList.add('btn-pag-invalid');
