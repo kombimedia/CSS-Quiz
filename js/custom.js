@@ -16,6 +16,7 @@ var quizInstruct = document.getElementById('quiz-instructions');
 var quizForm = document.getElementById('quiz-form');
 var progessComplete = document.querySelector('.circle.active');
 var errorMessage = document.getElementById('error-message');
+var errorMessagePB = document.getElementById('error-message-pb');
 var completedMessageBox = document.getElementById('completed-message-box');
 var questionAmount = 10;
 
@@ -108,7 +109,7 @@ function showGetScore(input) {
 
 // Quiz validation - Check that each question has an answer checked. Add the radio button value to the total score; false = 0 / true =  1
 function quizValidate() {
-  // var notAnswered = "";
+  var notAnswered = "";
   var scoreTotal = 0;
   var completedMessage = document.getElementById('completed-message');
     for (var questionNumber = 1; questionNumber <= questionAmount; questionNumber++) {
@@ -122,14 +123,25 @@ function quizValidate() {
         }
       }
       if (ansChecked === false) {
-        errorMessage.innerHTML = ("Uh oh.. You haven't answered all the questions! Please <u>click</u> circles marked with red to answer questions");
-        return false;
+        errorMessage.innerHTML = ("Uh oh... You haven't answered all the questions! Please <u>click</u> circles marked with <u>red</u> to answer remaining questions.");
+        // Display unanswered questions for small screens <768px
+        notAnswered += questionNumber + ", ";
+        //return false;
       }
     }
+
+    // Print unanswered error message for small screens <768px
+    if(notAnswered !== "") {
+    // if not all questions are answered
+    errorMessagePB.innerHTML = ("Uh oh... You still need to answer question(s) " + notAnswered);
+    return false;
+  }
+
     // Once all questions are answered and 'Get Score' is clicked, hide the quiz form and show congratulations message
     quizForm.style.display = 'none';
     completedMessageBox.style.display = 'block';
     errorMessage.innerHTML = "";
+    errorMessagePB.innerHTML = "";
     completedMessage.innerHTML = ("<h2>Good work " + name.split(" ")[0] + "! You have completed the CSS quiz.</h2><h3>Your score is " + scoreTotal + " out of " + questionAmount + "!</h3>");
 }
 
@@ -180,11 +192,13 @@ function resetQuiz(){
     quizForm.style.display = 'block';
     activeQuestion.classList.remove('active');
     questionOne.classList.add('active');
-    getScore.className = 'hidden';
+    //getScore.className = 'hidden expandOpen';
+    getScore.classList.add('hidden','expandOpen','teal');
     nextButton.classList.remove('btn-pag-invalid');
     prevButton.classList.add('btn-pag-invalid');
     completedMessageBox.style.display = 'none';
     errorMessage.innerHTML = "";
+    errorMessagePB.innerHTML = "";
     resetProgress()
 }
 

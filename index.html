@@ -39,22 +39,24 @@
       <div class="fade-in hidden" id="quiz-form">
 
         <!-- Progress and navigation -->
-        <div class="progress" id="pro-link">
-          <a href="#" class="col un-answered circle active pulse" id="pro1">1</a>
-          <a href="#" class="col un-answered circle" id="pro2">2</a>
-          <a href="#" class="col un-answered circle" id="pro3">3</a>
-          <a href="#" class="col un-answered circle" id="pro4">4</a>
-          <a href="#" class="col un-answered circle" id="pro5">5</a>
-          <a href="#" class="col un-answered circle" id="pro6">6</a>
-          <a href="#" class="col un-answered circle" id="pro7">7</a>
-          <a href="#" class="col un-answered circle" id="pro8">8</a>
-          <a href="#" class="col un-answered circle" id="pro9">9</a>
-          <a href="#"" class="col un-answered circle" id="pro10">10</a>
+        <div class="progress-circles">
+          <div class="progress" id="pro-link">
+            <a href="#" class="col un-answered circle active pulse" id="pro1">1</a>
+            <a href="#" class="col un-answered circle" id="pro2">2</a>
+            <a href="#" class="col un-answered circle" id="pro3">3</a>
+            <a href="#" class="col un-answered circle" id="pro4">4</a>
+            <a href="#" class="col un-answered circle" id="pro5">5</a>
+            <a href="#" class="col un-answered circle" id="pro6">6</a>
+            <a href="#" class="col un-answered circle" id="pro7">7</a>
+            <a href="#" class="col un-answered circle" id="pro8">8</a>
+            <a href="#" class="col un-answered circle" id="pro9">9</a>
+            <a href="#"" class="col un-answered circle" id="pro10">10</a>
+          </div>
+          <div class="clear" id="error-message"></div>
         </div>
-        <div class="clear" id="error-message"></div>
 
         <!-- Progress bar -->
-        <div class="hidden" id="progress-container">
+        <div id="progress-container">
           <progress id="progress" value='10' max='100'></progress>
           <span id="progress-value">10%</span>
         </div>
@@ -214,12 +216,12 @@
           <!-- Pagination buttons and 'Get Score' button -->
           <button type="button" class="btn-pag btn-pag-invalid" id="prev" data-diff="-10">Prev Question</button>
           <button type="button" class="btn-pag" id="next" data-diff="10">Next Question</button>
-          <button class="hidden expandOpen" type="button" id="calculate-score">Get Score!</button>
+          <button class="hidden expandOpen teal" type="button" id="calculate-score">Get Score!</button>
         </form>
       </div>
 
       <!-- div for quiz error messages, restart quiz button-->
-      <!-- <div class="clear" id="error-message"></div> -->
+      <div class="clear hidden" id="error-message-pb"></div>
       <div class="content-box fade-in hidden" id="completed-message-box">
         <span id="completed-message"></span>
         <button type="button" id="restart-quiz">Have Another Go!</button>
