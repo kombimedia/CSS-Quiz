@@ -51,11 +51,14 @@ a{
 
 /* Forms
 -----------------------------------------------------*/
-input[type="radio"], input[type="text"], input[type="text"] + label {
+input[type="radio"],
+input[type="text"],
+input[type="text"] + label{
   float: left;
   clear: left;
 }
 input{
+  background-color: rgba(237, 240, 241, 0.5);
   margin: .8em;
   padding: 1.2em;
 }
