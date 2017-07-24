@@ -42,7 +42,7 @@ function signupValidate() {
       signupMessage.innerHTML = validEmail;
       return;
     }
-    // Once correct name and email have been entered, hide singup form, show quiz instructions and remove error messages
+    // Once correct name and email have been entered, hide singup form, show quiz instructions and remove error message
     signupForm.style.display = "none";
     quizInstruct.style.display = "block";
     signupMessage.innerHTML = "";
@@ -85,7 +85,7 @@ function validateEmail() {
   return false;
 }
 
-// Hide the quiz instructions once 'Got It' button is clicked
+// Hide the quiz instructions and show quiz once 'Got It' button is clicked
 function closeInstructions(){
   quizInstruct.style.display = "none";
   quizForm.style.display = "block";
@@ -123,7 +123,7 @@ function quizValidate() {
         }
       }
       if (ansChecked === false) {
-        // Print unanswered error message for large screens, progress circles
+        // if questions are unanswered, print unanswered error message for large screens, progress circles
         errorMessage.innerHTML = ("Uh oh... You haven't answered all the questions! Please <u>click</u> circles marked with <u>red</u> to answer remaining questions.");
         // Save unanswered question numbers for small screen error message
         notAnswered += questionNumber + ", ";
@@ -131,12 +131,12 @@ function quizValidate() {
     }
 
     if(notAnswered !== "") {
-    // Print unanswered error message for small screens, progress bar
+    // If questions are unanswered, print unanswered error message for small screens, progress bar
     errorMessagePB.innerHTML = ("Uh oh... You still need to answer question(s) " + notAnswered);
     return false;
   }
 
-    // Once all questions are answered and 'Get Score' is clicked, hide the quiz form and show congratulations message
+    // Once all questions are answered and 'Get Score' button is clicked, hide the quiz form and show congratulations message
     quizForm.style.display = 'none';
     completedMessageBox.style.display = 'block';
     errorMessage.innerHTML = "";
@@ -170,7 +170,7 @@ function stopLoading() {
   getScore.innerHTML = ('Get Score!');
 }
 
-// Reset quiz function - uncheck all radios, hide 'Have Another Go!' button, hide congratulations message, and error messages show quiz at question 1, reset 'next' and 'prev' buttons, reset progress bar and 'Get Score' button
+// Reset quiz function - uncheck all radios, hide 'Have Another Go!' button, hide congratulations message, and error messages, show quiz at question 1, reset 'next' and 'prev' buttons, reset progress bar and 'Get Score' button
 function resetQuiz(){
   var questionOne = document.querySelector('.q1');
   var activeQuestion = document.querySelector('.question.active');
@@ -215,7 +215,7 @@ function resetProgress() {
   var pro10 = document.getElementById('pro10');
   // Create an array of all of the circles
   var allPros = [pro1, pro2, pro3, pro4, pro5, pro6, pro7, pro8, pro9, pro10]
-    // Remove the un-required class' from each circle and add 'un-answered' class
+    // Remove the un-required class' from each circle and add 'unanswered' class
     allPros.forEach(function(el) {
     el.classList.remove('red', 'teal', 'pulse', 'active');
     el.classList.add('un-answered');

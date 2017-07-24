@@ -100,7 +100,7 @@ progress::-moz-progress-bar{
   width: 100%;
   display: inline-block;
   text-align: center;
-  padding: 15px 0;
+  padding: 15px 0 0;
   margin: auto;
 }
 .col{
@@ -170,6 +170,9 @@ button:focus{
 -----------------------------------------------------*/
 #signup-error-message{
   color: #FF0000;
+}
+#error-message{
+  margin-top: 10px;
 }
 #error-message,
 #error-message-pb{
