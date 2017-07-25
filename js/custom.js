@@ -32,7 +32,7 @@ var submitForm = document.getElementById('email-field');
 function signupValidate() {
   var signupForm = document.getElementById("sign-up");
   var signupMessage = document.getElementById('signup-error-message');
-  // Execute validation functions and out error messages
+  // Execute validation functions and output error messages
   var validName = validateName();
   var validEmail = validateEmail();
     if (validName) {
@@ -126,7 +126,7 @@ function quizValidate() {
       for (var radioButton = 0; radioButton < answers.length; radioButton++) {
         // Check that a radio has been selected (question answered)
         if (answers[radioButton].checked === true) {
-          // Add radio value to the total score variable, correct answer scores 1, incorrect scores 0
+          // Add radio value to the scoreTotal variable, correct answer scores 1, incorrect scores 0
           scoreTotal += parseInt(answers[radioButton].value);
           ansChecked = true;
         }
@@ -135,13 +135,13 @@ function quizValidate() {
       if (ansChecked === false) {
         // Output unanswered error message for large screens - progress circles
         errorMessage.innerHTML = ("Uh oh... You haven't answered all the questions! Please <u>click</u> circles marked with <u>red</u> to answer remaining questions.");
-        // Save unanswered question numbers for small screen error message
+        // Store unanswered question numbers for small screen error message
         notAnswered += questionNum + ". ";
       }
     }
     // Check that all questions have been answered i.e. 'notAnswered' string is empty
     if(notAnswered !== "") {
-    // Output unanswered error message for small screens - progress bar
+    // If 'notAnswered' string is populated, output unanswered error message for small screens - progress bar
     errorMessagePB.innerHTML = ("Uh oh... You still need to answer question(s) " + notAnswered);
     return false;
   }
@@ -169,7 +169,7 @@ function loading() {
   activeCircle.classList.remove('pulse');
 }
 
-// Stop loading animation once time delay has passed
+// Stop loading animation once time delay has passed - Called in 'Loading' function
 function stopLoading() {
   getScore.innerHTML = ('Get Score!');
 }
@@ -184,7 +184,7 @@ function markUnAnswered() {
     }
 }
 
-// Reset quiz function - Called on 'Have Another Go' button click event hide 'Have Another Go!' button, hide congratulations message, reset error messages, show quiz at question 1, reset 'next' and 'prev' buttons, reset progress bar and 'Get Score' button
+// Reset quiz function - Called on 'Have Another Go' button click event
 function resetQuiz(){
   var questionOne = document.querySelector('.q1');
   var activeQuestion = document.querySelector('.question.active');
@@ -195,9 +195,9 @@ function resetQuiz(){
     // Loop through all questions
     for (var questionNum = 1; questionNum <= numOfQuestions; questionNum++) {
       var ansChecked = false;
-      // Save answers
+      // Store answers to a variable
       var answers = document.getElementsByName("question-" + questionNum);
-      // Loop through answers
+      // Loop through answers (radio button)
       for (var radioButton = 0; radioButton < answers.length; radioButton++) {
           // Uncheck each radio
           answers[radioButton].checked = false;
@@ -248,7 +248,7 @@ function resetProgress() {
     circle.classList.remove('red', 'teal', 'pulse', 'active');
     circle.classList.add('un-answered');
     })
-    // Add 'Active' and 'Pulse' class' to circle 1
+    // Add 'Active' and 'Pulse' class' to circle 1 (current question)
     pro1.classList.add('active', 'pulse');
 }
 
@@ -260,7 +260,7 @@ $(".btn-pag").click(function() {
 // Animate progress bar by pre-defined value (data-diff)
 function animateProgress(diff) {
     var currValue = $("#progress").val();
-    // Save 'diff' value of each click
+    // Store 'diff' value of each click
     var toValue = currValue + diff;
     // Set min and max progress
     toValue = toValue < 10 ? 10 : toValue;
@@ -281,7 +281,7 @@ $("#prev").on("click", function() {
         // Add pulse animation to progress circle of previous question, remove from current question
         $(".circle.active").removeClass("active pulse").prev().addClass("active pulse");
     }
-  // Dull appearance of 'prev' button when not valid - current question is 1
+  // Dull appearance of 'previous' button when not valid - current question is 1
     if($(".question.active").index() < 1)
         $("#prev").addClass("btn-pag-invalid");
   // Brighten appearance of 'next' button when valid - current question is not 10
@@ -298,7 +298,7 @@ $("#next").on("click", function() {
         // Add pulse animation to progress circle of next question, remove from current question
         $(".circle.active").removeClass("active pulse").next().addClass("active pulse");
     }
-  // Brighten appearance of 'prev' button when valid - Current question is not 1
+  // Brighten appearance of 'previous' button when valid - Current question is not 1
     if($(".question.active").index() > 0)
         $("#prev").removeClass("btn-pag-invalid");
   // Dull appearance of 'next' button when not valid - Current question is not 10
@@ -319,10 +319,10 @@ $("#pro-link a").click(function(circle) {
       $("#pro"+id).addClass("active pulse");
       // Show corresponding question
       $("#q-div-"+id).addClass("active");
-      // Dull appearance of 'prev' button when not valid
+      // Dull appearance of 'previous' button when not valid
       if($("#q-div-"+id).index() < 1)
           $("#prev").addClass("btn-pag-invalid");
-      // Brighten appearance of 'prev' button when valid
+      // Brighten appearance of 'previous' button when valid
       if($("#q-div-"+id).index() > 0)
           $("#prev").removeClass("btn-pag-invalid");
       // Brighten appearance of 'next' button when valid
