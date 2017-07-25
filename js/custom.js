@@ -126,7 +126,7 @@ function quizValidate() {
         // if questions are unanswered, print unanswered error message for large screens, progress circles
         errorMessage.innerHTML = ("Uh oh... You haven't answered all the questions! Please <u>click</u> circles marked with <u>red</u> to answer remaining questions.");
         // Save unanswered question numbers for small screen error message
-        notAnswered += questionNumber + ", ";
+        notAnswered += questionNumber + ". ";
       }
     }
 
@@ -156,7 +156,7 @@ function markUnAnswered() {
 function loading() {
   var activeCircle = document.querySelector('.circle.active')
   getScore.innerHTML = ('<i class="fa fa-circle-o-notch fa-spin"></i>Get Score!');
-  // Run validate quiz function
+  // Run - validate quiz function
   setTimeout(quizValidate, 2000);
   // Run - stop loading animation function
   setTimeout(stopLoading, 2000);
@@ -170,7 +170,7 @@ function stopLoading() {
   getScore.innerHTML = ('Get Score!');
 }
 
-// Reset quiz function - uncheck all radios, hide 'Have Another Go!' button, hide congratulations message, and error messages, show quiz at question 1, reset 'next' and 'prev' buttons, reset progress bar and 'Get Score' button
+// Reset quiz function - uncheck all radios, hide 'Have Another Go!' button, hide congratulations message, reset error messages, show quiz at question 1, reset 'next' and 'prev' buttons, reset progress bar and 'Get Score' button
 function resetQuiz(){
   var questionOne = document.querySelector('.q1');
   var activeQuestion = document.querySelector('.question.active');
@@ -228,7 +228,7 @@ function resetProgress() {
 $(".btn-pag").click(function () {
     animateProgress(parseInt($(this).data('diff')));
 });
-// Animate progress bar by pre-defined value, set min and max progress, populate value %  per click
+// Animate progress bar by pre-defined value, set min and max progress, populate value % per click
 function animateProgress(diff) {
     var currValue = $("#progress").val();
     var toValue = currValue + diff;

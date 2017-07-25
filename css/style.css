@@ -72,6 +72,7 @@ fieldset{
   position: relative;
 }
 progress{
+  background: transparent;
   width: 100%;
   border: 1px solid #1ABC9C;
   border-radius: 5px;
@@ -79,16 +80,17 @@ progress{
   margin-top: 40px;
   margin-bottom: 20px;
   display: block;
+  -webkit-appearance: none;
 }
 progress::-webkit-progress-bar{
-  background-color: transparent;
+  background: transparent;
   border-radius: 5px;
 }
 progress::-webkit-progress-value{
-  background-color: #1ABC9C;
+  background: #1ABC9C;
 }
 progress::-moz-progress-bar{
-  background-color: #000;
+  background: #1ABC9C;
   border-radius: 5px;
 }
 #progress-value{
